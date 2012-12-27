@@ -34,7 +34,8 @@ var createQueue = function(name)
 {
 	return {
 		id: queues.length + 1,
-		name: name
+		name: name,
+		stories: []  // {"description":"S-1234 - Mark"}, {"description":"D-1235 - Simon"}
 	};
 };
 

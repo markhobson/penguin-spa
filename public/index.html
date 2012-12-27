@@ -48,7 +48,13 @@
 						<th data-bind="text: name"></th>
 					</tr>
 				</thead>
-				<!-- TODO: queue entries -->
+				<tbody data-bind="foreach: stories">
+						<tr>
+							<td>
+								<a data-bind="text: description"></a>
+							</td>
+						</tr>
+					</tbody>
 			</table>
 		</script>
 		

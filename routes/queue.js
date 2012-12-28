@@ -2,6 +2,7 @@
  * Queue resource.
  */
 var fs = require("fs");
+var util = require("util");
 
 var FILENAME = ".saved-queues.json";
 var queues = [];
@@ -49,7 +50,7 @@ var save = function()
 			throw err;
 		}
 		
-		console.log("Saved " + queues.length + " queue(s)");
+		util.log(util.format("Saved %d queue(s)", queues.length));
 	});
 };
 
@@ -70,7 +71,7 @@ exports.load = function()
 			}
 			
 			queues = JSON.parse(data);
-			console.log("Loaded " + queues.length + " queue(s)");
+			util.log(util.format("Loaded %d queue(s)", queues.length));
 		});
 	});
 };

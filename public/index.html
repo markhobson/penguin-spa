@@ -44,20 +44,19 @@
 		<script id="queueView" type="text/html">
 			<div data-bind="with: queue">
 				<a data-bind="attr: {href: '#/queue/' + id() + '/add'}">Add to queue</a>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th data-bind="text: name"></th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: stories">
+						<tr>
+							<td data-bind="text: description"></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-
-			<table class="table table-striped" data-bind="with: queue">
-				<thead>
-					<tr>
-						<th data-bind="text: name"></th>
-					</tr>
-				</thead>
-				<tbody data-bind="foreach: stories">
-					<tr>
-						<td data-bind="text: description"></td>
-					</tr>
-				</tbody>
-			</table>
 		</script>
 		
 		<script id="queueCreate" type="text/html">

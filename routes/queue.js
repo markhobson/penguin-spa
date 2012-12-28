@@ -41,8 +41,6 @@ var createQueue = function(name)
  */
 var save = function()
 {
-	console.log("Saved " + queues.length + " queues\n:" + JSON.stringify(queues));
-	
 	fs.writeFile(".saved-queues.json", JSON.stringify(queues), function(err)
 	{
 		if (err)
@@ -50,7 +48,7 @@ var save = function()
 			throw err;
 		}
 		
-		console.log("It's saved!");
+		console.log("Saved " + queues.length + " queue(s)");
 	});
 };
 
@@ -60,9 +58,8 @@ exports.load = function()
 	{
 		if (!err)
 		{
-			console.log(JSON.parse(data));
 			queues = JSON.parse(data);
-			console.log("Loaded " + queues.length + " queues");
+			console.log("Loaded " + queues.length + " queue(s)");
 		}
 	});
 };

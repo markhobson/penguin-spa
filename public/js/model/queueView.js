@@ -8,7 +8,7 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 		queue: mapping.fromJS({
 			id: null,
 			name: null,
-			stories: ko.observableArray()
+			stories: []
 		}),
 		
 		load: function(id) {

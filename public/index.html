@@ -42,14 +42,21 @@
 		</script>
 		
 		<script id="queueView" type="text/html">
-			<table class="table table-striped" data-bind="with: queue">
-				<thead>
-					<tr>
-						<th data-bind="text: name"></th>
-					</tr>
-				</thead>
-				<!-- TODO: queue entries -->
-			</table>
+			<div data-bind="with: queue">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th data-bind="text: name"></th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: stories">
+						<tr>
+							<td data-bind="text: description"></td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/stories/new'}">New Story</a>
+			</div>
 		</script>
 		
 		<script id="queueCreate" type="text/html">
@@ -66,6 +73,20 @@
 			</form>
 		</script>
 		
+		<script id="storyCreate" type="text/html">
+			<form data-bind="submit: save">
+				<fieldset data-bind="with: story">
+					<legend>New Story</legend>
+					<label for="description">Description</label>
+					<input id="description" type="text" required data-bind="value: description"/>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">Create</button>
+						<a class="btn" data-bind="attr: {href: '#/queue/' + $parent.queueId()}">Cancel</a>
+					</div>
+				</fieldset>
+			</form>
+		</script>
+
 	</head>
 	
 	<body>

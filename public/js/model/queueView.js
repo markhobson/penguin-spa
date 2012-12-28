@@ -6,7 +6,9 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 	page.queueView = {
 		
 		queue: mapping.fromJS({
-			name: null
+			id: null,
+			name: null,
+			stories: []
 		}),
 		
 		load: function(id) {

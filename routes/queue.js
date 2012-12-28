@@ -25,7 +25,7 @@ exports.create = function(request, response)
 	var queue = createQueue(name);
 
 	queues.push(queue);
-	save();
+	exports.save();
 	
 	response.send(201, {id: queue.id});
 };
@@ -34,14 +34,20 @@ var createQueue = function(name)
 {
 	return {
 		id: queues.length + 1,
-		name: name
+		name: name,
+		stories: []
 	};
+};
+
+exports.getQueue = function(id)
+{
+	return queues[id - 1];
 };
 
 /* 
  * Save and load operations.
  */
-var save = function()
+exports.save = function()
 {
 	fs.writeFile(FILENAME, JSON.stringify(queues), function(err)
 	{

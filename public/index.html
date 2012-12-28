@@ -43,7 +43,6 @@
 		
 		<script id="queueView" type="text/html">
 			<div data-bind="with: queue">
-				<a data-bind="attr: {href: '#/queue/' + id() + '/add'}">Add to queue</a>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -56,6 +55,7 @@
 						</tr>
 					</tbody>
 				</table>
+				<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/add'}">Add to queue</a>
 			</div>
 		</script>
 		

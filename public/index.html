@@ -19,13 +19,10 @@
 		<!-- templates -->
 		
 		<script id="queuesView" type="text/html">
+			<h3>Queues</h3>
+
 			<div data-bind="if: queues().length">
 				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Queue</th>
-						</tr>
-					</thead>
 					<tbody data-bind="foreach: queues">
 						<tr>
 							<td>
@@ -43,12 +40,8 @@
 		
 		<script id="queueView" type="text/html">
 			<div data-bind="with: queue">
+				<h3 data-bind="text: name"></h3>
 				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th data-bind="text: name"></th>
-						</tr>
-					</thead>
 					<tbody data-bind="foreach: stories">
 						<tr>
 							<td data-bind="text: description"></td>

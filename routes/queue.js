@@ -47,10 +47,12 @@ var save = function()
 	{
 		if (err)
 		{
-			throw err;
+			util.error("Error saving queue(s)", err);
 		}
-		
-		util.log(util.format("Saved %d queue(s)", queues.length));
+		else
+		{
+			util.log(util.format("Saved %d queue(s)", queues.length));
+		}
 	});
 };
 
@@ -67,11 +69,13 @@ exports.load = function()
 		{
 			if (err)
 			{
-				throw err;
+				util.error("Error loading queue(s)", err);
 			}
-			
-			queues = JSON.parse(data);
-			util.log(util.format("Loaded %d queue(s)", queues.length));
+			else
+			{
+				queues = JSON.parse(data);
+				util.log(util.format("Loaded %d queue(s)", queues.length));
+			}
 		});
 	});
 };

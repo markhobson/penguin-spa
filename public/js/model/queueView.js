@@ -11,15 +11,17 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 			stories: []
 		}),
 		
-		load: function(id) {
+		load: function(id, done) {
 			$.getJSON("/api/queue/" + id, function(data) {
 				mapping.fromJS(data, {}, page.queueView.queue);
+				done();
 			});
 		},
 		
 		show: function(id) {
-			page.queueView.load(id);
-			page.show("queueView");
+			page.queueView.load(id, function() {
+				page.show("queueView");
+			});
 		}
 		
 	};

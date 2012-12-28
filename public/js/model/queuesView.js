@@ -7,15 +7,17 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 		
 		queues: ko.observableArray(),
 		
-		load: function() {
+		load: function(done) {
 			$.getJSON("/api/queues", function(data) {
 				mapping.fromJS(data, {}, page.queuesView.queues);
+				done();
 			});
 		},
 		
 		show: function() {
-			page.queuesView.load();
-			page.show("queuesView");
+			page.queuesView.load(function() {
+				page.show("queuesView");
+			});
 		}
 		
 	};

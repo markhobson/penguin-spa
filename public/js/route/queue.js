@@ -9,6 +9,6 @@ define(["router", "model/page", "model/queueCreate", "model/queuesView", "model/
 	
 	router.on("/queue/:id", page.queueView.show);
 
-	router.on("/queue/:id/new", page.storyCreate.show);
+	router.on("/queue/:id/stories/new", page.storyCreate.show);
 	
 });

@@ -28,8 +28,9 @@ app.get("/api/queues", queue.list);
 app.get("/api/queue/:id", queue.get);
 app.post("/api/queues", queue.create);
 
+queue.load();
+
 http.createServer(app).listen(app.get("port"), function()
 {
 	console.log("Server listening on port " + app.get("port"));
-	queue.load();
 });

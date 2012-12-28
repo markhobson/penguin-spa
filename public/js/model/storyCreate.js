@@ -8,24 +8,24 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		queueId: null
 	};
 	
-	page.storyAdd = {
+	page.storyCreate = {
 		
 		story: mapping.fromJS(newStory),
 		
-		add: function() {
+		save: function() {
 			$.postJSON("/api/story", ko.toJSON(this.story), function(data) {
-				window.location.hash = "/queue/" + page.storyAdd.story.queueId();
+				window.location.hash = "/queue/" + page.storyCreate.story.queueId();
 			});
 		},
 		
 		reset: function() {
-			mapping.fromJS(newStory, page.storyAdd.story);
+			mapping.fromJS(newStory, page.storyCreate.story);
 		},
 		
 		show: function(id) {
-			page.storyAdd.reset();
-			page.storyAdd.story.queueId(id);
-			page.show("storyAdd");
+			page.storyCreate.reset();
+			page.storyCreate.story.queueId(id);
+			page.show("storyCreate");
 		}
 		
 	};

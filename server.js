@@ -29,7 +29,7 @@ app.configure("development", function()
 app.get("/api/queues", queue.list);
 app.get("/api/queue/:id", queue.get);
 app.post("/api/queues", queue.create);
-app.post("/api/story", story.add);
+app.post("/api/story", story.create);
 
 queue.load();
 

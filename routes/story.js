@@ -3,7 +3,7 @@
  */
 var queue = require("./queue");
 
-exports.add = function(request, response)
+exports.create = function(request, response)
 {
 	var description = request.body.description;
 	var queueId = request.body.queueId;

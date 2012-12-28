@@ -55,7 +55,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/add'}">Add to queue</a>
+				<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/new'}">New Story</a>
 			</div>
 		</script>
 		
@@ -73,14 +73,14 @@
 			</form>
 		</script>
 		
-		<script id="storyAdd" type="text/html">
-			<form data-bind="submit: add">
+		<script id="storyCreate" type="text/html">
+			<form data-bind="submit: save">
 				<fieldset data-bind="with: story">
-					<legend>Add to Queue</legend>
+					<legend>New Story</legend>
 					<label for="description">Description</label>
 					<input id="description" type="text" required data-bind="value: description"/>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Add</button>
+						<button type="submit" class="btn btn-primary">Create</button>
 						<a class="btn" href="#/queues">Cancel</a>
 					</div>
 				</fieldset>

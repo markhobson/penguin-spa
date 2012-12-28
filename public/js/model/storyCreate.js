@@ -13,7 +13,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		story: mapping.fromJS(newStory),
 		
 		save: function() {
-			$.postJSON("/api/story", ko.toJSON(this.story), function(data) {
+			$.postJSON("/api/queue/" + page.storyCreate.story.queueId() + "/stories", ko.toJSON(this.story), function(data) {
 				window.location.hash = "/queue/" + page.storyCreate.story.queueId();
 			});
 		},

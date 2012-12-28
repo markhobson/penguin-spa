@@ -5,7 +5,7 @@ define(["router", "model/page", "model/queueCreate", "model/queuesView", "model/
 
 	router.on("/queues", page.queuesView.show);
 	
-	router.on("/queue/new", page.queueCreate.show);
+	router.on("/queues/new", page.queueCreate.show);
 	
 	router.on("/queue/:id", page.queueView.show);
 	

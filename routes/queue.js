@@ -3,6 +3,7 @@
  */
 var fs = require("fs");
 
+var FILENAME = ".saved-queues.json";
 var queues = [];
 
 exports.list = function(request, response)
@@ -41,7 +42,7 @@ var createQueue = function(name)
  */
 var save = function()
 {
-	fs.writeFile(".saved-queues.json", JSON.stringify(queues), function(err)
+	fs.writeFile(FILENAME, JSON.stringify(queues), function(err)
 	{
 		if (err)
 		{
@@ -54,7 +55,7 @@ var save = function()
 
 exports.load = function()
 {
-	fs.readFile(".saved-queues.json", function(err, data)
+	fs.readFile(FILENAME, function(err, data)
 	{
 		if (!err)
 		{

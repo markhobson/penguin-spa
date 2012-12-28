@@ -26,9 +26,12 @@ app.configure("development", function()
 	app.use(express.errorHandler());
 });
 
+// queues
 app.get("/api/queues", queue.list);
 app.get("/api/queue/:id", queue.get);
 app.post("/api/queues", queue.create);
+
+// stories
 app.post("/api/queue/:id/stories", story.create);
 
 queue.load();

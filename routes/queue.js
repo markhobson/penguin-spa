@@ -55,12 +55,22 @@ var save = function()
 
 exports.load = function()
 {
-	fs.readFile(FILENAME, function(err, data)
+	fs.exists(FILENAME, function(exists)
 	{
-		if (!err)
+		if (!exists)
 		{
+			return;
+		}
+		
+		fs.readFile(FILENAME, function(err, data)
+		{
+			if (err)
+			{
+				throw err;
+			}
+			
 			queues = JSON.parse(data);
 			console.log("Loaded " + queues.length + " queue(s)");
-		}
+		});
 	});
 };

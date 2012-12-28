@@ -4,7 +4,9 @@
 var express = require("express");
 var http = require("http");
 var path = require("path");
+
 var queue = require("./routes/queue");
+var story = require("./routes/story");
 
 var app = express();
 
@@ -27,6 +29,7 @@ app.configure("development", function()
 app.get("/api/queues", queue.list);
 app.get("/api/queue/:id", queue.get);
 app.post("/api/queues", queue.create);
+app.post("/api/story", story.add);
 
 queue.load();
 

@@ -37,7 +37,7 @@
 			</div>
 					
 			<div data-bind="ifnot: queues().length">
-				<p>There are no queues.  Would you like to <a href="#/queues/new">create one</a>?</p>
+				<p>There are no queues.  Would you like to <a href="#/queues/create">create one</a>?</p>
 			</div>
 		</script>
 		
@@ -55,7 +55,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/stories/new'}">New Story</a>
+				<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/stories/create'}">New Story</a>
 			</div>
 		</script>
 		
@@ -97,7 +97,7 @@
 				<div class="navbar-inner">
 					<a class="brand" href="#/queues">Penguin</a>
 					<ul class="nav">
-						<li><a href="#/queues/new">New Queue</a></li>
+						<li><a href="#/queues/create">New Queue</a></li>
 					</ul>
 				</div>
 			</div>

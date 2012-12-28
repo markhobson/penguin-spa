@@ -8,7 +8,9 @@ exports.create = function(request, response)
 	var description = request.body.description;
 	var queueId = request.params.id;
 
-	queue.addStory(queueId, description);
+	var story = {"description": description};
+	queue.getQueue(queueId).stories.push(story);
+	queue.save();
 
 	// TODO: return story id when available
 	response.send(201);

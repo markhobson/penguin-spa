@@ -10,5 +10,6 @@ exports.create = function(request, response)
 
 	queue.addStory(queueId, description);
 
-	response.send(201, {id: queue.id});
+	// TODO: return story id when available
+	response.send(201);
 };

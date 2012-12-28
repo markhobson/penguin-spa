@@ -43,7 +43,7 @@ exports.addStory = function(queueId, description)
 {
 	var queue = queues[queueId - 1];
 
-	queue.stories.push({"description":description});
+	queue.stories.push({"description": description});
 	save();
 };
 

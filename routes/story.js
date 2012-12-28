@@ -1,4 +1,6 @@
-
+/*
+ * Story resource.
+ */
 var queue = require("./queue");
 
 exports.add = function(request, response)
@@ -10,4 +12,3 @@ exports.add = function(request, response)
 
 	response.send(201, {id: queue.id});
 };
-

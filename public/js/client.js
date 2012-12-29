@@ -18,4 +18,4 @@ require.config({
 
 });
 
-require(["bootstrap", "route/routes"]);
+require(["bootstrap", "route/routes", "error"]);

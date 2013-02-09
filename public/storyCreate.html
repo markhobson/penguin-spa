@@ -1,11 +1,17 @@
 <form data-bind="submit: save">
+
 	<fieldset data-bind="with: story">
+	
 		<legend>New Story</legend>
+		
 		<label for="description">Description</label>
 		<input id="description" type="text" class="input-xxlarge" required data-bind="value: description"/>
+		
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary">Create</button>
 			<a class="btn" data-bind="attr: {href: '#/queue/' + $parent.queueId()}">Cancel</a>
 		</div>
+		
 	</fieldset>
+	
 </form>

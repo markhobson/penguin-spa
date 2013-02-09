@@ -1,4 +1,5 @@
 <div data-bind="with: queue">
+
 	<h3 data-bind="text: name"></h3>
 
 	<div data-bind="if: stories().length">
@@ -16,4 +17,5 @@
 	</div>
 
 	<a class="btn btn-primary" data-bind="attr: {href: '#/queue/' + id() + '/stories/create'}">New Story</a>
+	
 </div>

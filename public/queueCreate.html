@@ -1,11 +1,17 @@
 <form data-bind="submit: save">
+
 	<fieldset data-bind="with: queue">
+	
 		<legend>New Queue</legend>
+		
 		<label for="name">Name</label>
 		<input id="name" type="text" required data-bind="value: name"/>
+		
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary">Create</button>
 			<a class="btn" href="#/queues">Cancel</a>
 		</div>
+		
 	</fieldset>
+	
 </form>

@@ -1,0 +1,17 @@
+<h3>Queues</h3>
+
+<div data-bind="if: queues().length">
+	<table class="table table-striped">
+		<tbody data-bind="foreach: queues">
+			<tr>
+				<td>
+					<a data-bind="attr: {href: '#/queue/' + id()}, text: name"></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+		
+<div data-bind="ifnot: queues().length">
+	<p>There are no queues.  Would you like to <a href="#/queues/create">create one</a>?</p>
+</div>

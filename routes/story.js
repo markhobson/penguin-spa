@@ -10,11 +10,12 @@ var dao = require("../dao/memory");
 exports.create = function(request, response)
 {
 	var queueId = request.params.id;
-	var name = request.body.name;
-	var description = request.body.description;
-	var author = request.body.author;
 
-	var story = createStory(name, description, author);
+	var story = {
+		name: request.body.name,
+		description: request.body.description,
+		author: request.body.author
+	};
 	
 	dao.findQueue(queueId, function(queue)
 	{
@@ -23,17 +24,4 @@ exports.create = function(request, response)
 		// TODO: return story id when available
 		response.send(201);
 	});
-};
-
-// ----------------------------------------------------------------------------
-// Private methods
-// ----------------------------------------------------------------------------
-
-var createStory = function(name, description, author)
-{
-	return {
-		name: name,
-		description: description,
-		author: author
-	};
 };

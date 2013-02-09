@@ -34,8 +34,6 @@ app.post("/api/queues", queue.create);
 // stories
 app.post("/api/queue/:id/stories", story.create);
 
-queue.load();
-
 http.createServer(app).listen(app.get("port"), function()
 {
 	console.log("Server listening on port " + app.get("port"));

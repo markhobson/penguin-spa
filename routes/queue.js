@@ -1,10 +1,6 @@
 /*
  * Queue resource.
  */
-var fs = require("fs");
-var util = require("util");
-
-var FILENAME = ".saved-queues.json";
 var queues = [];
 
 // ----------------------------------------------------------------------------
@@ -29,48 +25,8 @@ exports.create = function(request, response)
 	var queue = createQueue(name);
 
 	queues.push(queue);
-	exports.save();
 	
 	response.send(201, {id: queue.id});
-};
-
-exports.load = function()
-{
-	fs.exists(FILENAME, function(exists)
-	{
-		if (!exists)
-		{
-			return;
-		}
-		
-		fs.readFile(FILENAME, function(err, data)
-		{
-			if (err)
-			{
-				util.error("Error loading queue(s)", err);
-			}
-			else
-			{
-				queues = JSON.parse(data);
-				util.log(util.format("Loaded %d queue(s)", queues.length));
-			}
-		});
-	});
-};
-
-exports.save = function()
-{
-	fs.writeFile(FILENAME, JSON.stringify(queues), function(err)
-	{
-		if (err)
-		{
-			util.error("Error saving queue(s)", err);
-		}
-		else
-		{
-			util.log(util.format("Saved %d queue(s)", queues.length));
-		}
-	});
 };
 
 exports.getQueue = function(id)

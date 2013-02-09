@@ -16,7 +16,6 @@ exports.create = function(request, response)
 
 	var story = createStory(name, description, author);
 	queue.getQueue(queueId).stories.push(story);
-	queue.save();
 
 	// TODO: return story id when available
 	response.send(201);

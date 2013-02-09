@@ -7,6 +7,10 @@ var util = require("util");
 var FILENAME = ".saved-queues.json";
 var queues = [];
 
+// ----------------------------------------------------------------------------
+// Public methods
+// ----------------------------------------------------------------------------
+
 exports.list = function(request, response)
 {
 	response.send(queues);
@@ -28,38 +32,6 @@ exports.create = function(request, response)
 	exports.save();
 	
 	response.send(201, {id: queue.id});
-};
-
-var createQueue = function(name)
-{
-	return {
-		id: queues.length + 1,
-		name: name,
-		stories: []
-	};
-};
-
-exports.getQueue = function(id)
-{
-	return queues[id - 1];
-};
-
-/* 
- * Save and load operations.
- */
-exports.save = function()
-{
-	fs.writeFile(FILENAME, JSON.stringify(queues), function(err)
-	{
-		if (err)
-		{
-			util.error("Error saving queue(s)", err);
-		}
-		else
-		{
-			util.log(util.format("Saved %d queue(s)", queues.length));
-		}
-	});
 };
 
 exports.load = function()
@@ -84,4 +56,37 @@ exports.load = function()
 			}
 		});
 	});
+};
+
+exports.save = function()
+{
+	fs.writeFile(FILENAME, JSON.stringify(queues), function(err)
+	{
+		if (err)
+		{
+			util.error("Error saving queue(s)", err);
+		}
+		else
+		{
+			util.log(util.format("Saved %d queue(s)", queues.length));
+		}
+	});
+};
+
+exports.getQueue = function(id)
+{
+	return queues[id - 1];
+};
+
+// ----------------------------------------------------------------------------
+// Private methods
+// ----------------------------------------------------------------------------
+
+var createQueue = function(name)
+{
+	return {
+		id: queues.length + 1,
+		name: name,
+		stories: []
+	};
 };

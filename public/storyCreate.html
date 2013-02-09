@@ -7,8 +7,14 @@
 	
 		<legend>New Story</legend>
 		
+		<label for="name">Name</label>
+		<input id="name" type="text" required data-bind="value: name"/>
+		
 		<label for="description">Description</label>
 		<input id="description" type="text" class="input-xxlarge" required data-bind="value: description"/>
+		
+		<label for="author">Author</label>
+		<input id="author" type="text" required data-bind="value: author"/>
 		
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary">Create</button>

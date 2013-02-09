@@ -10,9 +10,11 @@ var queue = require("./queue");
 exports.create = function(request, response)
 {
 	var queueId = request.params.id;
+	var name = request.body.name;
 	var description = request.body.description;
+	var author = request.body.author;
 
-	var story = createStory(description);
+	var story = createStory(name, description, author);
 	queue.getQueue(queueId).stories.push(story);
 	queue.save();
 
@@ -24,9 +26,11 @@ exports.create = function(request, response)
 // Private methods
 // ----------------------------------------------------------------------------
 
-var createStory = function(description)
+var createStory = function(name, description, author)
 {
 	return {
-		description: description
+		name: name,
+		description: description,
+		author: author
 	};
 };

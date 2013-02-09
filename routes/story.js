@@ -1,7 +1,7 @@
 /*
  * Story resource.
  */
-var queue = require("./queue");
+var dao = require("../dao/memory");
 
 // ----------------------------------------------------------------------------
 // Public methods
@@ -15,10 +15,14 @@ exports.create = function(request, response)
 	var author = request.body.author;
 
 	var story = createStory(name, description, author);
-	queue.getQueue(queueId).stories.push(story);
-
-	// TODO: return story id when available
-	response.send(201);
+	
+	dao.findQueue(queueId, function(queue)
+	{
+		queue.stories.push(story);
+		
+		// TODO: return story id when available
+		response.send(201);
+	});
 };
 
 // ----------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 /*
  * Queue resource.
  */
-var queues = [];
+var dao = require("../dao/memory");
 
 // ----------------------------------------------------------------------------
 // Public methods
@@ -9,40 +9,31 @@ var queues = [];
 
 exports.list = function(request, response)
 {
-	response.send(queues);
+	dao.findQueues(function(queues)
+	{
+		response.send(queues);
+	});
 };
 
 exports.get = function(request, response)
 {
-	var id = request.params.id - 1;
+	var id = request.params.id;
 	
-	response.send(queues[id] || 404);
+	dao.findQueue(id, function(queue)
+	{
+		response.send(queue || 404);
+	});
 };
 
 exports.create = function(request, response)
 {
-	var name = request.body.name;
-	var queue = createQueue(name);
-
-	queues.push(queue);
-	
-	response.send(201, {id: queue.id});
-};
-
-exports.getQueue = function(id)
-{
-	return queues[id - 1];
-};
-
-// ----------------------------------------------------------------------------
-// Private methods
-// ----------------------------------------------------------------------------
-
-var createQueue = function(name)
-{
-	return {
-		id: queues.length + 1,
-		name: name,
+	var queue = {
+		name: request.body.name,
 		stories: []
 	};
+
+	dao.saveQueue(queue, function(queue)
+	{
+		response.send(201, {id: queue.id});
+	});
 };

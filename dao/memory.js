@@ -1,0 +1,27 @@
+/*
+ * Penguin in-memory data layer.
+ */
+var queues = [];
+var id = 1;
+
+// ----------------------------------------------------------------------------
+// Public methods
+// ----------------------------------------------------------------------------
+
+exports.findQueues = function(callback)
+{
+	callback(queues);
+};
+
+exports.findQueue = function(id, callback)
+{
+	callback(queues[id - 1]);
+};
+
+exports.saveQueue = function(queue, callback)
+{
+	queue.id = id++;
+	queues.push(queue);
+	
+	callback(queue);
+};

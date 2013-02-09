@@ -3,13 +3,13 @@
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
-	var emptyQueue = {
+	var newQueue = {
 		name: null
 	};
 	
 	page.queueCreate = {
 		
-		queue: mapping.fromJS(emptyQueue),
+		queue: mapping.fromJS(newQueue),
 		
 		save: function() {
 			$.postJSON("/api/queues", ko.toJSON(this.queue), function(data) {
@@ -18,7 +18,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		},
 		
 		reset: function() {
-			mapping.fromJS(emptyQueue, page.queueCreate.queue);
+			mapping.fromJS(newQueue, page.queueCreate.queue);
 		},
 		
 		show: function() {

@@ -25,3 +25,12 @@ exports.saveQueue = function(queue, callback)
 	
 	callback(queue);
 };
+
+exports.saveStory = function(queueId, story, callback)
+{
+	exports.findQueue(queueId, function(queue)
+	{
+		queue.stories.push(story);
+		callback(story);
+	});
+};

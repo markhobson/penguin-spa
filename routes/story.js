@@ -17,10 +17,8 @@ exports.create = function(request, response)
 		author: request.body.author
 	};
 	
-	dao.findQueue(queueId, function(queue)
+	dao.saveStory(queueId, story, function(story)
 	{
-		queue.stories.push(story);
-		
 		// TODO: return story id when available
 		response.send(201);
 	});

@@ -24,9 +24,8 @@ define(["mongodb"], function(mongodb) {
 			mongoClient.open(function(error, mongoClient) {
 				
 				var db = mongoClient.db(databaseName);
-				var objectId = db.bson_serializer.ObjectID.createFromHexString(id);
 				
-				db.collection("queues").findOne({_id: objectId}, function(error, queue) {
+				db.collection("queues").findOne({_id: new mongodb.ObjectID(id)}, function(error, queue) {
 					callback(queue);
 					mongoClient.close();
 				});
@@ -49,9 +48,8 @@ define(["mongodb"], function(mongodb) {
 			mongoClient.open(function(error, mongoClient) {
 				
 				var db = mongoClient.db(databaseName);
-				var queueObjectId = db.bson_serializer.ObjectID.createFromHexString(queueId);
 				
-				db.collection("queues").update({_id: queueObjectId}, {$push: {stories: story}}, function(error, story) {
+				db.collection("queues").update({_id: new mongodb.ObjectID(queueId)}, {$push: {stories: story}}, function(error, story) {
 					callback(story);
 					mongoClient.close();
 				});

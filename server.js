@@ -23,8 +23,7 @@ app.configure("development", function()
 	app.use(express.errorHandler());
 });
 
-require("./route/queue")(app);
-require("./route/story")(app);
+require("./route")(app);
 
 http.createServer(app).listen(app.get("port"), function()
 {

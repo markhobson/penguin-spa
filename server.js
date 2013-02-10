@@ -5,9 +5,6 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 
-var queue = require("./resource/queue");
-var story = require("./resource/story");
-
 var app = express();
 
 app.configure(function()
@@ -26,13 +23,8 @@ app.configure("development", function()
 	app.use(express.errorHandler());
 });
 
-// queues
-app.get("/api/queues", queue.list);
-app.get("/api/queue/:id", queue.get);
-app.post("/api/queues", queue.create);
-
-// stories
-app.post("/api/queue/:id/stories", story.create);
+require("./route/queue")(app);
+require("./route/story")(app);
 
 http.createServer(app).listen(app.get("port"), function()
 {

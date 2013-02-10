@@ -1,7 +1,7 @@
 /*
  * Queue resource.
  */
-var dao = require("../dao/memory");
+var dao = require("../dao/mongodb");
 
 // ----------------------------------------------------------------------------
 // Public methods

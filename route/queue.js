@@ -1,3 +1,6 @@
+/*
+ * Configures the router for queues.
+ */
 var queue = require("../resource/queue");
 
 module.exports = function(app)

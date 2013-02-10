@@ -1,3 +1,6 @@
+/*
+ * Aggregates routes.
+ */
 module.exports = function(app)
 {
 	require("./queue")(app);

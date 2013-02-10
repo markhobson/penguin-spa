@@ -10,49 +10,50 @@ define(["mongodb"], function(mongodb) {
 		
 		findQueues: function(callback) {
 			mongoClient.open(function(error, mongoClient) {
-				
-				var db = mongoClient.db(databaseName);
-				
-				db.collection("queues").find().toArray(function(error, queues) {
-					callback(queues);
-					mongoClient.close();
-				});
+				mongoClient
+					.db(databaseName)
+					.collection("queues")
+					.find()
+					.toArray(function(error, queues) {
+						callback(queues);
+						mongoClient.close();
+					});
 			});
 		},
 
 		findQueue: function(id, callback) {
 			mongoClient.open(function(error, mongoClient) {
-				
-				var db = mongoClient.db(databaseName);
-				
-				db.collection("queues").findOne({_id: new mongodb.ObjectID(id)}, function(error, queue) {
-					callback(queue);
-					mongoClient.close();
-				});
+				mongoClient
+					.db(databaseName)
+					.collection("queues")
+					.findOne({_id: new mongodb.ObjectID(id)}, function(error, queue) {
+						callback(queue);
+						mongoClient.close();
+					});
 			});
 		},
 
 		saveQueue: function(queue, callback) {
 			mongoClient.open(function(error, mongoClient) {
-				
-				var db = mongoClient.db(databaseName);
-				
-				db.collection("queues").insert(queue, {w: 1}, function(error, queues) {
-					callback(queues[0]);
-					mongoClient.close();
-				});
+				mongoClient
+					.db(databaseName)
+					.collection("queues")
+					.insert(queue, {w: 1}, function(error, queues) {
+						callback(queues[0]);
+						mongoClient.close();
+					});
 			});
 		},
 
 		saveStory: function(queueId, story, callback) {
 			mongoClient.open(function(error, mongoClient) {
-				
-				var db = mongoClient.db(databaseName);
-				
-				db.collection("queues").update({_id: new mongodb.ObjectID(queueId)}, {$push: {stories: story}}, function(error, story) {
-					callback(story);
-					mongoClient.close();
-				});
+				mongoClient
+					.db(databaseName)
+					.collection("queues")
+					.update({_id: new mongodb.ObjectID(queueId)}, {$push: {stories: story}}, function(error, story) {
+						callback(story);
+						mongoClient.close();
+					});
 			});
 		}
 	};

@@ -11,7 +11,7 @@ define(["mongodb"], function(mongodb) {
 		
 		findQueues: function(callback) {
 			client.connect(url, function(error, db) {
-				db.collection(queuesName).find().toArray(function(error, queues) {
+				db.collection(queuesName).find().sort({name: 1}).toArray(function(error, queues) {
 					callback(queues);
 					db.close();
 				});

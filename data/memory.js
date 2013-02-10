@@ -1,5 +1,5 @@
 /*
- * Penguin in-memory data layer.
+ * In-memory data layer.
  */
 var queues = [];
 var id = 1;

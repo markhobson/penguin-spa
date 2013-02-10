@@ -1,5 +1,5 @@
 /*
- * Penguin MongoDB data layer.
+ * MongoDB data layer.
  */
 var MongoClient = require("mongodb").MongoClient;
 var Server = require("mongodb").Server;

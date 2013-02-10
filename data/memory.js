@@ -23,7 +23,7 @@ define(function() {
 		},
 
 		saveStory: function(queueId, story, callback) {
-			exports.findQueue(queueId, function(queue) {
+			this.findQueue(queueId, function(queue) {
 				queue.stories.push(story);
 				callback(story);
 			});

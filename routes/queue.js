@@ -34,6 +34,6 @@ exports.create = function(request, response)
 
 	dao.saveQueue(queue, function(queue)
 	{
-		response.send(201, {id: queue.id});
+		response.send(201, {_id: queue._id});
 	});
 };

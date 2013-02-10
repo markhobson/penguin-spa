@@ -1,7 +1,7 @@
 /*
  * Story resource.
  */
-var dao = require("../dao/mongodb");
+var data = require("../data/mongodb");
 
 // ----------------------------------------------------------------------------
 // Public methods
@@ -18,7 +18,7 @@ exports.create = function(request, response)
 		author: request.body.author
 	};
 	
-	dao.saveStory(queueId, story, function(story)
+	data.saveStory(queueId, story, function(story)
 	{
 		// TODO: return story id when available
 		response.send(201);

@@ -1,7 +1,7 @@
 /*
  * Queue resource.
  */
-var dao = require("../dao/mongodb");
+var data = require("../data/mongodb");
 
 // ----------------------------------------------------------------------------
 // Public methods
@@ -9,7 +9,7 @@ var dao = require("../dao/mongodb");
 
 exports.list = function(request, response)
 {
-	dao.findQueues(function(queues)
+	data.findQueues(function(queues)
 	{
 		response.send(queues);
 	});
@@ -19,7 +19,7 @@ exports.get = function(request, response)
 {
 	var id = request.params.id;
 	
-	dao.findQueue(id, function(queue)
+	data.findQueue(id, function(queue)
 	{
 		response.send(queue || 404);
 	});
@@ -32,7 +32,7 @@ exports.create = function(request, response)
 		stories: []
 	};
 
-	dao.saveQueue(queue, function(queue)
+	data.saveQueue(queue, function(queue)
 	{
 		response.send(201, {_id: queue._id});
 	});

@@ -7,6 +7,8 @@ var path = require("path");
 
 var app = express();
 
+// configure application
+
 app.configure(function()
 {
 	app.set("port", process.env.PORT || 8080);
@@ -18,12 +20,18 @@ app.configure(function()
 	app.use(express.static(path.join(__dirname, "public")));
 });
 
+// configure development profile
+
 app.configure("development", function()
 {
 	app.use(express.errorHandler());
 });
 
+// configure routes
+
 require("./route")(app);
+
+// start server
 
 http.createServer(app).listen(app.get("port"), function()
 {

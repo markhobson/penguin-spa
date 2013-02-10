@@ -19,8 +19,9 @@ define(["mongodb"], function(mongodb) {
 		},
 
 		findQueue: function(id, callback) {
+			var oid = new mongodb.ObjectID(id);
 			client.connect(url, function(error, db) {
-				db.collection(queuesName).findOne({_id: new mongodb.ObjectID(id)}, function(error, queue) {
+				db.collection(queuesName).findOne({_id: oid}, function(error, queue) {
 					callback(queue);
 					db.close();
 				});
@@ -37,8 +38,9 @@ define(["mongodb"], function(mongodb) {
 		},
 
 		saveStory: function(queueId, story, callback) {
+			var queueOid = new mongodb.ObjectID(queueId);
 			client.connect(url, function(error, db) {
-				db.collection(queuesName).update({_id: new mongodb.ObjectID(queueId)}, {$push: {stories: story}}, function(error, story) {
+				db.collection(queuesName).update({_id: queueOid}, {$push: {stories: story}}, function(error, story) {
 					callback(story);
 					db.close();
 				});

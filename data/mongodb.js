@@ -4,6 +4,7 @@
 define(["mongodb"], function(mongodb) {
 	
 	var dbName = "penguin";
+	var queuesName = "queues";
 	var mongoClient = new mongodb.MongoClient(new mongodb.Server("localhost", 27017, {native_parser: true}));
 
 	return {
@@ -12,7 +13,7 @@ define(["mongodb"], function(mongodb) {
 			mongoClient.open(function(error, mongoClient) {
 				mongoClient
 					.db(dbName)
-					.collection("queues")
+					.collection(queuesName)
 					.find()
 					.toArray(function(error, queues) {
 						callback(queues);
@@ -25,7 +26,7 @@ define(["mongodb"], function(mongodb) {
 			mongoClient.open(function(error, mongoClient) {
 				mongoClient
 					.db(dbName)
-					.collection("queues")
+					.collection(queuesName)
 					.findOne({_id: new mongodb.ObjectID(id)}, function(error, queue) {
 						callback(queue);
 						mongoClient.close();
@@ -37,7 +38,7 @@ define(["mongodb"], function(mongodb) {
 			mongoClient.open(function(error, mongoClient) {
 				mongoClient
 					.db(dbName)
-					.collection("queues")
+					.collection(queuesName)
 					.insert(queue, {w: 1}, function(error, queues) {
 						callback(queues[0]);
 						mongoClient.close();
@@ -49,7 +50,7 @@ define(["mongodb"], function(mongodb) {
 			mongoClient.open(function(error, mongoClient) {
 				mongoClient
 					.db(dbName)
-					.collection("queues")
+					.collection(queuesName)
 					.update({_id: new mongodb.ObjectID(queueId)}, {$push: {stories: story}}, function(error, story) {
 						callback(story);
 						mongoClient.close();

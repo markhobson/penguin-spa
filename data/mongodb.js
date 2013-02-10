@@ -3,7 +3,6 @@
  */
 var MongoClient = require("mongodb").MongoClient;
 var Server = require("mongodb").Server;
-var ObjectId = require("mongodb").ObjectId;
 
 var databaseName = "penguin";
 var mongoClient = new MongoClient(new Server("localhost", 27017, {native_parser: true}));

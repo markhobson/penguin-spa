@@ -5,55 +5,55 @@ define(["mongodb"], function(mongodb) {
 	
 	var dbName = "penguin";
 	var queuesName = "queues";
-	var mongoClient = new mongodb.MongoClient(new mongodb.Server("localhost", 27017, {native_parser: true}));
+	var client = new mongodb.MongoClient(new mongodb.Server("localhost", 27017, {native_parser: true}));
 
 	return {
 		
 		findQueues: function(callback) {
-			mongoClient.open(function(error, mongoClient) {
-				mongoClient
+			client.open(function(error, client) {
+				client
 					.db(dbName)
 					.collection(queuesName)
 					.find()
 					.toArray(function(error, queues) {
 						callback(queues);
-						mongoClient.close();
+						client.close();
 					});
 			});
 		},
 
 		findQueue: function(id, callback) {
-			mongoClient.open(function(error, mongoClient) {
-				mongoClient
+			client.open(function(error, client) {
+				client
 					.db(dbName)
 					.collection(queuesName)
 					.findOne({_id: new mongodb.ObjectID(id)}, function(error, queue) {
 						callback(queue);
-						mongoClient.close();
+						client.close();
 					});
 			});
 		},
 
 		saveQueue: function(queue, callback) {
-			mongoClient.open(function(error, mongoClient) {
-				mongoClient
+			client.open(function(error, client) {
+				client
 					.db(dbName)
 					.collection(queuesName)
 					.insert(queue, {w: 1}, function(error, queues) {
 						callback(queues[0]);
-						mongoClient.close();
+						client.close();
 					});
 			});
 		},
 
 		saveStory: function(queueId, story, callback) {
-			mongoClient.open(function(error, mongoClient) {
-				mongoClient
+			client.open(function(error, client) {
+				client
 					.db(dbName)
 					.collection(queuesName)
 					.update({_id: new mongodb.ObjectID(queueId)}, {$push: {stories: story}}, function(error, story) {
 						callback(story);
-						mongoClient.close();
+						client.close();
 					});
 			});
 		}

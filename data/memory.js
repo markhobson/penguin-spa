@@ -19,7 +19,6 @@ exports.findQueue = function(id, callback) {
 exports.saveQueue = function(queue, callback) {
 	queue._id = id++;
 	queues.push(queue);
-	
 	callback(queue);
 };
 

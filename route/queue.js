@@ -2,6 +2,7 @@
  * Configures the router for queues.
  */
 module.exports = function(app, data) {
+	
 	var queue = require("../resource/queue")(data);
 
 	app.get("/api/queues", queue.list);

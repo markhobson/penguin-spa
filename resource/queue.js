@@ -2,7 +2,9 @@
  * Queue resource.
  */
 module.exports = function(data) {
+	
 	return {
+		
 		list: function(request, response) {
 			data.findQueues(function(queues) {
 				response.send(queues);
@@ -10,6 +12,7 @@ module.exports = function(data) {
 		},
 
 		get: function(request, response) {
+			
 			var id = request.params.id;
 			
 			data.findQueue(id, function(queue) {
@@ -18,6 +21,7 @@ module.exports = function(data) {
 		},
 
 		create: function(request, response) {
+			
 			var queue = {
 				name: request.body.name,
 				stories: []

@@ -14,6 +14,7 @@ var mongoClient = new MongoClient(new Server("localhost", 27017, {native_parser:
 
 exports.findQueues = function(callback) {
 	mongoClient.open(function(error, mongoClient) {
+		
 		var db = mongoClient.db(databaseName);
 		
 		db.collection("queues").find().toArray(function(error, queues) {
@@ -25,6 +26,7 @@ exports.findQueues = function(callback) {
 
 exports.findQueue = function(id, callback) {
 	mongoClient.open(function(error, mongoClient) {
+		
 		var db = mongoClient.db(databaseName);
 		var objectId = db.bson_serializer.ObjectID.createFromHexString(id);
 		
@@ -37,6 +39,7 @@ exports.findQueue = function(id, callback) {
 
 exports.saveQueue = function(queue, callback) {
 	mongoClient.open(function(error, mongoClient) {
+		
 		var db = mongoClient.db(databaseName);
 		
 		db.collection("queues").insert(queue, {w: 1}, function(error, queues) {
@@ -48,6 +51,7 @@ exports.saveQueue = function(queue, callback) {
 
 exports.saveStory = function(queueId, story, callback) {
 	mongoClient.open(function(error, mongoClient) {
+		
 		var db = mongoClient.db(databaseName);
 		var queueObjectId = db.bson_serializer.ObjectID.createFromHexString(queueId);
 		

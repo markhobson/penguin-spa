@@ -2,7 +2,9 @@
  * View model for listing the queues.
  */
 define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, page) {
+	
 	page.queuesView = {
+		
 		queues: ko.observableArray(),
 		
 		load: function(done) {

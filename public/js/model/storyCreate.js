@@ -2,6 +2,7 @@
  * View model for adding a story to a queue.
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
+	
 	var newStory = {
 		name: null,
 		description: null,
@@ -9,6 +10,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 	};
 	
 	page.storyCreate = {
+		
 		queueId: ko.observable(),
 		
 		story: mapping.fromJS(newStory),

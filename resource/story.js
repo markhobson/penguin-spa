@@ -2,8 +2,11 @@
  * Story resource.
  */
 module.exports = function(data) {
+	
 	return {
+		
 		create: function(request, response) {
+			
 			var queueId = request.params.id;
 
 			var story = {

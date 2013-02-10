@@ -2,11 +2,13 @@
  * View model for creating a queue.
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
+	
 	var newQueue = {
 		name: null
 	};
 	
 	page.queueCreate = {
+		
 		queue: mapping.fromJS(newQueue),
 		
 		save: function() {

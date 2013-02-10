@@ -1,8 +1,10 @@
 /*
  * Penguin client.
  */
-require.config( {
+require.config({
+	
 	paths: {
+		
 		// jQuery
 		jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min",
 		"jquery-json": "lib/jquery-json",

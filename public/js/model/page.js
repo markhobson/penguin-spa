@@ -2,6 +2,7 @@
  * View model for data shared across all pages.
  */
 define(["knockout"], function(ko) {
+	
 	var model = {
 		/*
 		 * The template name of the currently visible page.

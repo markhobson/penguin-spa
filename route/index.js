@@ -1,8 +1,8 @@
 /*
  * Aggregates routes.
  */
-module.exports = function(app)
+module.exports = function(app, data)
 {
-	require("./queue")(app);
-	require("./story")(app);
+	require("./queue")(app, data);
+	require("./story")(app, data);
 };

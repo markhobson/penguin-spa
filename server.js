@@ -29,7 +29,8 @@ app.configure("development", function()
 
 // configure routes
 
-require("./route")(app);
+var data = require("./data/mongodb");
+require("./route")(app, data);
 
 // start server
 

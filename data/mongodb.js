@@ -12,58 +12,46 @@ var mongoClient = new MongoClient(new Server("localhost", 27017, {native_parser:
 // Public methods
 // ----------------------------------------------------------------------------
 
-exports.findQueues = function(callback)
-{
-	mongoClient.open(function(error, mongoClient)
-	{
+exports.findQueues = function(callback) {
+	mongoClient.open(function(error, mongoClient) {
 		var db = mongoClient.db(databaseName);
 		
-		db.collection("queues").find().toArray(function(error, queues)
-		{
+		db.collection("queues").find().toArray(function(error, queues) {
 			callback(queues);
 			mongoClient.close();
 		});
 	});
 };
 
-exports.findQueue = function(id, callback)
-{
-	mongoClient.open(function(error, mongoClient)
-	{
+exports.findQueue = function(id, callback) {
+	mongoClient.open(function(error, mongoClient) {
 		var db = mongoClient.db(databaseName);
 		var objectId = db.bson_serializer.ObjectID.createFromHexString(id);
 		
-		db.collection("queues").findOne({_id: objectId}, function(error, queue)
-		{
+		db.collection("queues").findOne({_id: objectId}, function(error, queue) {
 			callback(queue);
 			mongoClient.close();
 		});
 	});
 };
 
-exports.saveQueue = function(queue, callback)
-{
-	mongoClient.open(function(error, mongoClient)
-	{
+exports.saveQueue = function(queue, callback) {
+	mongoClient.open(function(error, mongoClient) {
 		var db = mongoClient.db(databaseName);
 		
-		db.collection("queues").insert(queue, {w: 1}, function(error, queues)
-		{
+		db.collection("queues").insert(queue, {w: 1}, function(error, queues) {
 			callback(queues[0]);
 			mongoClient.close();
 		});
 	});
 };
 
-exports.saveStory = function(queueId, story, callback)
-{
-	mongoClient.open(function(error, mongoClient)
-	{
+exports.saveStory = function(queueId, story, callback) {
+	mongoClient.open(function(error, mongoClient) {
 		var db = mongoClient.db(databaseName);
 		var queueObjectId = db.bson_serializer.ObjectID.createFromHexString(queueId);
 		
-		db.collection("queues").update({_id: queueObjectId}, {$push: {stories: story}}, function(error, story)
-		{
+		db.collection("queues").update({_id: queueObjectId}, {$push: {stories: story}}, function(error, story) {
 			callback(story);
 			mongoClient.close();
 		});

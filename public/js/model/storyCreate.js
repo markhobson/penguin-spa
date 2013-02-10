@@ -1,36 +1,29 @@
 /*
  * View model for adding a story to a queue.
  */
-define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page)
-{
-	var newStory =
-	{
+define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
+	var newStory = {
 		name: null,
 		description: null,
 		author: null
 	};
 	
-	page.storyCreate =
-	{
+	page.storyCreate = {
 		queueId: ko.observable(),
 		
 		story: mapping.fromJS(newStory),
 		
-		save: function()
-		{
-			$.postJSON("/api/queue/" + page.storyCreate.queueId() + "/stories", ko.toJSON(this.story), function(data)
-			{
+		save: function() {
+			$.postJSON("/api/queue/" + page.storyCreate.queueId() + "/stories", ko.toJSON(this.story), function(data) {
 				window.location.hash = "/queue/" + page.storyCreate.queueId();
 			});
 		},
 		
-		reset: function()
-		{
+		reset: function() {
 			mapping.fromJS(newStory, page.storyCreate.story);
 		},
 		
-		show: function(id)
-		{
+		show: function(id) {
 			page.storyCreate.queueId(id);
 			page.storyCreate.reset();
 			page.show("storyCreate");

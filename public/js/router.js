@@ -1,7 +1,6 @@
 /*
  * Creates a new Director router.
  */
-define(["director"], function()
-{
+define(["director"], function() {
 	return Router();
 });

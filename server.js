@@ -9,8 +9,7 @@ var app = express();
 
 // configure application
 
-app.configure(function()
-{
+app.configure(function() {
 	app.set("port", process.env.PORT || 8080);
 	app.use(express.favicon());
 	app.use(express.logger("dev"));
@@ -22,8 +21,7 @@ app.configure(function()
 
 // configure development profile
 
-app.configure("development", function()
-{
+app.configure("development", function() {
 	app.use(express.errorHandler());
 });
 
@@ -34,7 +32,6 @@ require("./route")(app, data);
 
 // start server
 
-http.createServer(app).listen(app.get("port"), function()
-{
+http.createServer(app).listen(app.get("port"), function() {
 	console.log("Server listening on port " + app.get("port"));
 });

@@ -1,7 +1,7 @@
 /*
  * Story resource.
  */
-module.exports = function(data) {
+define(["data/index"], function(data) {
 	
 	return {
 		
@@ -21,4 +21,4 @@ module.exports = function(data) {
 			});
 		}
 	};
-};
+});

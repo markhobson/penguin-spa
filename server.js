@@ -1,37 +1,17 @@
 /*
  * Penguin server.
  */
-var express = require("express");
-var http = require("http");
-var path = require("path");
+var requirejs = require("requirejs");
 
-var app = express();
-
-// configure application
-
-app.configure(function() {
-	app.set("port", process.env.PORT || 8080);
-	app.use(express.favicon());
-	app.use(express.logger("dev"));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
-	app.use(app.router);
-	app.use(express.static(path.join(__dirname, "public")));
+requirejs.config({
+	nodeRequire: require
 });
 
-// configure development profile
+requirejs(["app", "route/index", "http"], function(app, route, http) {
+	
+	// start server
 
-app.configure("development", function() {
-	app.use(express.errorHandler());
-});
-
-// configure routes
-
-var data = require("./data/mongodb");
-require("./route")(app, data);
-
-// start server
-
-http.createServer(app).listen(app.get("port"), function() {
-	console.log("Server listening on port " + app.get("port"));
+	http.createServer(app).listen(app.get("port"), function() {
+		console.log("Server listening on port " + app.get("port"));
+	});
 });

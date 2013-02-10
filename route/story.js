@@ -1,9 +1,7 @@
 /*
  * Configures the router for stories.
  */
-module.exports = function(app, data) {
+define(["app", "resource/story"], function(app, story) {
 	
-	var story = require("../resource/story")(data);
-
 	app.post("/api/queue/:id/stories", story.create);
-};
+});

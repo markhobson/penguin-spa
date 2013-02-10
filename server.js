@@ -5,8 +5,8 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 
-var queue = require("./routes/queue");
-var story = require("./routes/story");
+var queue = require("./resource/queue");
+var story = require("./resource/story");
 
 var app = express();
 

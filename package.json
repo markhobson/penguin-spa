@@ -5,6 +5,7 @@
 	"private": true,
 	"dependencies": {
 		"requirejs": "2.1.4",
+		"optimist": "0.3.5",
 		"express": "3.0.4",
 		"mongodb": "1.2.11"
 	},

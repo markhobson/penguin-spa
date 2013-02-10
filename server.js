@@ -7,11 +7,15 @@ requirejs.config({
 	nodeRequire: require
 });
 
-requirejs(["app", "route/index"], function(app, route) {
+requirejs(["app", "cli", "route/index"], function(app, cli, route) {
 	
 	// start server
+	
+	var port = app.get("port");
 
-	app.listen(app.get("port"), function() {
-		console.log("Server listening on port " + app.get("port"));
-	});
+	if (port) {
+		app.listen(port, function() {
+			console.log("Server listening on port " + port);
+		});
+	}
 });

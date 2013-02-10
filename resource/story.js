@@ -11,7 +11,8 @@ exports.create = function(request, response)
 {
 	var queueId = request.params.id;
 
-	var story = {
+	var story =
+	{
 		name: request.body.name,
 		description: request.body.description,
 		author: request.body.author

@@ -1,10 +1,10 @@
 /*
  * Penguin client.
  */
-require.config({
-	
-	paths: {
-		
+require.config(
+{
+	paths:
+	{
 		// jQuery
 		jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min",
 		"jquery-json": "lib/jquery-json",
@@ -23,10 +23,10 @@ require.config({
 		bootstrap: "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min"
 	},
 	
-	shim: {
+	shim:
+	{
 		bootstrap: ["jquery"]
 	}
-
 });
 
 require(["bootstrap", "knockout-ext", "route/index", "error"]);

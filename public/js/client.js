@@ -29,4 +29,4 @@ require.config({
 
 });
 
-require(["bootstrap", "knockout-ext", "route/routes", "error"]);
+require(["bootstrap", "knockout-ext", "route/index", "error"]);

@@ -22,6 +22,11 @@ define(function() {
 			queues.push(queue);
 			callback(queue);
 		},
+		
+		deleteQueue: function(id, callback) {
+			// TODO: remove queue from array
+			callback();
+		},
 
 		saveStory: function(queueId, story, callback) {
 			this.findQueue(queueId, function(queue) {

@@ -1,0 +1,19 @@
+<!--
+	View for deleting a queue.
+-->
+<form data-bind="submit: del">
+
+	<fieldset data-bind="with: queue">
+	
+		<legend>Delete Queue</legend>
+		
+		<p>Do you want to delete the queue '<span data-bind="text: name"></span>'?</p>
+		
+		<div class="form-actions">
+			<button type="submit" class="btn btn-danger">Delete</button>
+			<a class="btn" data-bind="attr: {href: '#/queue/' + _id()}">Cancel</a>
+		</div>
+		
+	</fieldset>
+	
+</form>

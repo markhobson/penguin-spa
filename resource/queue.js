@@ -30,6 +30,15 @@ define(["data/index"], function(data) {
 			data.saveQueue(queue, function(queue) {
 				response.send(201, {_id: queue._id});
 			});
+		},
+		
+		del: function(request, response) {
+			
+			var id = request.params.id;
+			
+			data.deleteQueue(id, function() {
+				response.send(204);
+			});
 		}
 	};
 });

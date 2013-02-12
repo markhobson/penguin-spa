@@ -36,6 +36,16 @@ define(["mongodb"], function(mongodb) {
 				});
 			});
 		},
+		
+		deleteQueue: function(id, callback) {
+			var oid = new mongodb.ObjectID(id);
+			client.connect(url, function(error, db) {
+				db.collection(queuesName).remove({_id: oid}, {w: 1}, function(error, count) {
+					callback();
+					db.close();
+				});
+			});
+		},
 
 		saveStory: function(queueId, story, callback) {
 			var queueOid = new mongodb.ObjectID(queueId);

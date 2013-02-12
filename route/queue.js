@@ -8,4 +8,6 @@ define(["app", "resource/queue"], function(app, queue) {
 	app.get("/api/queue/:id", queue.get);
 	
 	app.post("/api/queues", queue.create);
+	
+	app.del("/api/queue/:id", queue.del);
 });

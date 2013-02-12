@@ -13,7 +13,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		
 		save: function() {
 			$.postJSON("/api/queues", ko.toJSON(this.queue), function(data) {
-				window.location.hash = "/queue/" + data._id;
+				window.location.hash = "/queues";
 			});
 		},
 		

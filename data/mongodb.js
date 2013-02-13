@@ -60,7 +60,7 @@ define(["mongodb"], function(mongodb) {
 		saveStory: function(queueId, story, callback) {
 			var queueOid = new mongodb.ObjectID(queueId);
 			client.connect(url, function(error, db) {
-				db.collection(queuesName).update({_id: queueOid}, {$push: {stories: story}}, {w: 1}, function(error, story) {
+				db.collection(queuesName).update({_id: queueOid}, {$push: {stories: story}}, {w: 1}, function(error, count) {
 					callback(story);
 					db.close();
 				});

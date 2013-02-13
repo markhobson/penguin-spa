@@ -16,10 +16,10 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 		
 		show: function() {
 			model.load(function() {
-				page.show("queuesView");
+				page.show("queueList");
 			});
 		}
 	};
 	
-	page.queuesView = model;
+	page.queueList = model;
 });

@@ -1,9 +1,9 @@
 /*
  * Configures the router for queues.
  */
-define(["router", "model/page", "model/queueCreate", "model/queueEdit", "model/queueDelete", "model/queuesView", "model/queueView"], function(router, page) {
+define(["router", "model/page", "model/queueCreate", "model/queueEdit", "model/queueDelete", "model/queueList", "model/queueView"], function(router, page) {
 	
-	router.on("/queues", page.queuesView.show);
+	router.on("/queues", page.queueList.show);
 	
 	router.on("/queues/create", page.queueCreate.show);
 	

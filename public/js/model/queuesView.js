@@ -3,21 +3,23 @@
  */
 define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, page) {
 	
-	page.queuesView = {
+	var model = {
 		
 		queues: ko.observableArray(),
 		
 		load: function(done) {
 			$.getJSON("/api/queues", function(data) {
-				mapping.fromJS(data, {}, page.queuesView.queues);
+				mapping.fromJS(data, {}, model.queues);
 				done();
 			});
 		},
 		
 		show: function() {
-			page.queuesView.load(function() {
+			model.load(function() {
 				page.show("queuesView");
 			});
 		}
 	};
+	
+	page.queuesView = model;
 });

@@ -7,23 +7,25 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		name: null
 	};
 	
-	page.queueCreate = {
+	var model = {
 		
 		queue: mapping.fromJS(newQueue),
 		
 		save: function() {
-			$.postJSON("/api/queues", ko.toJSON(this.queue), function(data) {
+			$.postJSON("/api/queues", ko.toJSON(model.queue), function(data) {
 				window.location.hash = "/queues";
 			});
 		},
 		
 		reset: function() {
-			mapping.fromJS(newQueue, page.queueCreate.queue);
+			mapping.fromJS(newQueue, model.queue);
 		},
 		
 		show: function() {
-			page.queueCreate.reset();
+			model.reset();
 			page.show("queueCreate");
 		}
 	};
+	
+	page.queueCreate = model;
 });

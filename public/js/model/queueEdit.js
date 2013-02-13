@@ -3,7 +3,7 @@
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
-	page.queueEdit = {
+	var model = {
 		
 		queue: mapping.fromJS({
 			_id: null,
@@ -12,21 +12,23 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		
 		load: function(id, done) {
 			$.getJSON("/api/queue/" + id, function(data) {
-				mapping.fromJS(data, {}, page.queueEdit.queue);
+				mapping.fromJS(data, {}, model.queue);
 				done();
 			});
 		},
 		
 		save: function() {
-			$.putJSON("/api/queue/" + page.queueEdit.queue._id(), ko.toJSON(this.queue), function(data) {
-				window.location.hash = "/queue/" + page.queueEdit.queue._id();
+			$.putJSON("/api/queue/" + model.queue._id(), ko.toJSON(model.queue), function(data) {
+				window.location.hash = "/queue/" + model.queue._id();
 			});
 		},
 		
 		show: function(id) {
-			page.queueEdit.load(id, function() {
+			model.load(id, function() {
 				page.show("queueEdit");
 			});
 		}
 	};
+	
+	page.queueEdit = model;
 });

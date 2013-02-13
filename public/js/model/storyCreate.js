@@ -9,26 +9,28 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		author: null
 	};
 	
-	page.storyCreate = {
+	var model = {
 		
 		queueId: ko.observable(),
 		
 		story: mapping.fromJS(newStory),
 		
 		save: function() {
-			$.postJSON("/api/queue/" + page.storyCreate.queueId() + "/stories", ko.toJSON(this.story), function(data) {
-				window.location.hash = "/queue/" + page.storyCreate.queueId();
+			$.postJSON("/api/queue/" + model.queueId() + "/stories", ko.toJSON(model.story), function(data) {
+				window.location.hash = "/queue/" + model.queueId();
 			});
 		},
 		
 		reset: function() {
-			mapping.fromJS(newStory, page.storyCreate.story);
+			mapping.fromJS(newStory, model.story);
 		},
 		
 		show: function(id) {
-			page.storyCreate.queueId(id);
-			page.storyCreate.reset();
+			model.queueId(id);
+			model.reset();
 			page.show("storyCreate");
 		}
 	};
+	
+	page.storyCreate = model;
 });

@@ -3,7 +3,7 @@
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
-	page.queueDelete = {
+	var model = {
 		
 		queue: mapping.fromJS({
 			_id: null,
@@ -13,7 +13,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		
 		load: function(id, done) {
 			$.getJSON("/api/queue/" + id, function(data) {
-				mapping.fromJS(data, {}, page.queueDelete.queue);
+				mapping.fromJS(data, {}, model.queue);
 				done();
 			});
 		},
@@ -21,7 +21,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		del: function() {
 			$.ajax({
 				type: "DELETE",
-				url: "/api/queue/" + page.queueDelete.queue._id(),
+				url: "/api/queue/" + model.queue._id(),
 				success: function(data) {
 					window.location.hash = "/queues";
 				}
@@ -29,9 +29,11 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		},
 		
 		show: function(id) {
-			page.queueDelete.load(id, function() {
+			model.load(id, function() {
 				page.show("queueDelete");
 			});
 		}
 	};
+	
+	page.queueDelete = model;
 });

@@ -3,7 +3,7 @@
  */
 define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, page) {
 	
-	page.queueView = {
+	var model = {
 		
 		queue: mapping.fromJS({
 			_id: null,
@@ -13,15 +13,17 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 		
 		load: function(id, done) {
 			$.getJSON("/api/queue/" + id, function(data) {
-				mapping.fromJS(data, {}, page.queueView.queue);
+				mapping.fromJS(data, {}, model.queue);
 				done();
 			});
 		},
 		
 		show: function(id) {
-			page.queueView.load(id, function() {
+			model.load(id, function() {
 				page.show("queueView");
 			});
 		}
 	};
+	
+	page.queueView = model;
 });

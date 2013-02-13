@@ -30,7 +30,7 @@ define(function() {
 		
 		deleteQueue: function(id, callback) {
 			// TODO: remove queue from array
-			callback();
+			callback(true);
 		},
 
 		saveStory: function(queueId, story, callback) {

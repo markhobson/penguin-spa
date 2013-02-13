@@ -48,8 +48,8 @@ define(["data/index"], function(data) {
 			
 			var id = request.params.id;
 			
-			data.deleteQueue(id, function() {
-				response.send(204);
+			data.deleteQueue(id, function(success) {
+				response.send(success ? 204 : 404);
 			});
 		}
 	};

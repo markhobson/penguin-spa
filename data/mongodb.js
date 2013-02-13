@@ -51,7 +51,7 @@ define(["mongodb"], function(mongodb) {
 			var oid = new mongodb.ObjectID(id);
 			client.connect(url, function(error, db) {
 				db.collection(queuesName).remove({_id: oid}, {w: 1}, function(error, count) {
-					callback();
+					callback(count == 1);
 					db.close();
 				});
 			});

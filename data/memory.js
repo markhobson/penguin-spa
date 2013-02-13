@@ -23,6 +23,11 @@ define(function() {
 			callback(queue);
 		},
 		
+		updateQueue: function(queue, callback) {
+			queues[queue._id - 1] = queue;
+			callback(true);
+		},
+		
 		deleteQueue: function(id, callback) {
 			// TODO: remove queue from array
 			callback();

@@ -18,6 +18,19 @@ define(["jquery"], function($) {
 				data: data,
 				success: success
 			});
+		},
+
+		/*
+		 * Put JSON data to the server using a HTTP PUT request.
+		 */
+		putJSON: function(url, data, success) {
+			return $.ajax({
+				type: "PUT",
+				url: url,
+				contentType: "application/json",
+				data: data,
+				success: success
+			});
 		}
 
 	});

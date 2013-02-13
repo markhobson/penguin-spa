@@ -32,6 +32,18 @@ define(["data/index"], function(data) {
 			});
 		},
 		
+		update: function(request, response) {
+			
+			var queue = {
+				_id: request.params.id,
+				name: request.body.name
+			};
+			
+			data.updateQueue(queue, function(success) {
+				response.send(success ? 204 : 404);
+			});
+		},
+		
 		del: function(request, response) {
 			
 			var id = request.params.id;

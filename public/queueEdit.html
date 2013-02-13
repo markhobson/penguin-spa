@@ -1,0 +1,20 @@
+<!--
+	View for editing a queue.
+-->
+<form data-bind="submit: save">
+
+	<fieldset data-bind="with: queue">
+	
+		<legend>Rename Queue</legend>
+		
+		<label for="name">Name</label>
+		<input id="name" type="text" required data-bind="value: name"/>
+		
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Rename</button>
+			<a class="btn" data-bind="attr: {href: '#/queue/' + _id()}">Cancel</a>
+		</div>
+		
+	</fieldset>
+	
+</form>

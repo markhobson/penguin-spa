@@ -81,8 +81,8 @@ define(["mongodb"], function(mongodb) {
 		},
 		
 		createStory: function(queueId, story, callback) {
-			story._id = new mongodb.ObjectID();
 			var queueOid = new mongodb.ObjectID(queueId);
+			story._id = new mongodb.ObjectID();
 			client.connect(url, function(error, db) {
 				db.collection(queuesName).update({_id: queueOid}, {$push: {stories: story}}, {w: 1}, function(error, count) {
 					callback(story);

@@ -16,7 +16,7 @@ define(function() {
 			callback(queues[id - 1]);
 		},
 
-		saveQueue: function(queue, callback) {
+		createQueue: function(queue, callback) {
 			queue._id = id++;
 			// TODO: insert queue into array ordered by name
 			queues.push(queue);

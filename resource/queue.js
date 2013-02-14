@@ -27,7 +27,7 @@ define(["data/index"], function(data) {
 				stories: []
 			};
 
-			data.saveQueue(queue, function(queue) {
+			data.createQueue(queue, function(queue) {
 				response.send(201, {_id: queue._id});
 			});
 		},

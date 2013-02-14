@@ -28,7 +28,7 @@ define(["mongodb"], function(mongodb) {
 			});
 		},
 
-		saveQueue: function(queue, callback) {
+		createQueue: function(queue, callback) {
 			client.connect(url, function(error, db) {
 				db.collection(queuesName).insert(queue, {w: 1}, function(error, queues) {
 					callback(queues[0]);

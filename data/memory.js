@@ -34,6 +34,7 @@ define(function() {
 		},
 
 		createStory: function(queueId, story, callback) {
+			// TODO: set story._id
 			this.findQueue(queueId, function(queue) {
 				queue.stories.push(story);
 				callback(story);

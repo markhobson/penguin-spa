@@ -16,8 +16,7 @@ define(["data/index"], function(data) {
 			};
 			
 			data.createStory(queueId, story, function(story) {
-				// TODO: return story id when available
-				response.send(201);
+				response.send(201, {_id: story._id});
 			});
 		}
 	};

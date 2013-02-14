@@ -44,6 +44,11 @@ define(function() {
 				queue.stories.push(story);
 				callback(story);
 			});
+		},
+		
+		updateStory: function(queueId, story, callback) {
+			// TODO: implement
+			callback(false);
 		}
 	};
 });

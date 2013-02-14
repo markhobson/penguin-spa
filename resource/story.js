@@ -28,6 +28,22 @@ define(["data/index"], function(data) {
 			data.createStory(queueId, story, function(story) {
 				response.send(201, {_id: story._id});
 			});
+		},
+		
+		update: function(request, response) {
+			
+			var queueId = request.params.queueId;
+			
+			var story = {
+				_id: request.params.id,
+				name: request.body.name,
+				description: request.body.description,
+				author: request.body.author
+			};
+			
+			data.updateStory(queueId, story, function(success) {
+				response.send(success ? 204 : 404);
+			});
 		}
 	};
 });

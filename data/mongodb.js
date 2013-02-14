@@ -7,10 +7,12 @@ define(["mongodb"], function(mongodb) {
 	var url = "mongodb://localhost:27017/penguin";
 	var queuesName = "queues";
 
-	var getStoryById = function(stories, id) {
-		for (var index in stories) {
-			if (stories[index]._id == id) {
-				return stories[index];
+	var getStoryById = function(queue, id) {
+		if (queue != null) {
+			for (var index in queue.stories) {
+				if (queue.stories[index]._id == id) {
+					return queue.stories[index];
+				}
 			}
 		}
 		return null;
@@ -72,7 +74,7 @@ define(["mongodb"], function(mongodb) {
 			client.connect(url, function(error, db) {
 				// until SERVER-142 is fixed we have to filter out the story ourselves
 				db.collection(queuesName).findOne({_id: queueOid, "stories._id": oid}, function(error, queue) {
-					callback(getStoryById(queue.stories, id));
+					callback(getStoryById(queue, id));
 					db.close();
 				});
 			});
@@ -86,6 +88,22 @@ define(["mongodb"], function(mongodb) {
 					callback(story);
 					db.close();
 				});
+			});
+		},
+		
+		updateStory: function(queueId, story, callback) {
+			var queueOid = new mongodb.ObjectID(queueId);
+			var oid = new mongodb.ObjectID(story._id);
+			client.connect(url, function(error, db) {
+				db.collection(queuesName).update(
+					{_id: queueOid, "stories._id": oid},
+					{$set: {"stories.$.name": story.name, "stories.$.description": story.description, "stories.$.author": story.author}},
+					{w: 1},
+					function(error, count) {
+						callback(count == 1);
+						db.close();
+					}
+				);
 			});
 		}
 	};

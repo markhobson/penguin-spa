@@ -15,7 +15,7 @@ define(["data/index"], function(data) {
 				author: request.body.author
 			};
 			
-			data.saveStory(queueId, story, function(story) {
+			data.createStory(queueId, story, function(story) {
 				// TODO: return story id when available
 				response.send(201);
 			});

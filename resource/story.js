@@ -7,7 +7,7 @@ define(["data/index"], function(data) {
 		
 		create: function(request, response) {
 			
-			var queueId = request.params.id;
+			var queueId = request.params.queueId;
 
 			var story = {
 				name: request.body.name,

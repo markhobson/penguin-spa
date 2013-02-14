@@ -25,8 +25,8 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 			mapping.fromJS(newStory, model.story);
 		},
 		
-		show: function(id) {
-			model.queueId(id);
+		show: function(queueId) {
+			model.queueId(queueId);
 			model.reset();
 			page.show("storyCreate");
 		}

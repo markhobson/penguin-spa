@@ -3,5 +3,5 @@
  */
 define(["app", "resource/story"], function(app, story) {
 	
-	app.post("/api/queue/:id/stories", story.create);
+	app.post("/api/queue/:queueId/stories", story.create);
 });

@@ -11,7 +11,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		
 		queue: mapping.fromJS(newQueue),
 		
-		save: function() {
+		create: function() {
 			$.postJSON("/api/queues", ko.toJSON(model.queue), function(data) {
 				window.location.hash = "/queues";
 			});

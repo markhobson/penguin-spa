@@ -5,6 +5,16 @@ define(["data/index"], function(data) {
 	
 	return {
 		
+		get: function(request, response) {
+			
+			var queueId = request.params.queueId;
+			var id = request.params.id;
+			
+			data.findStory(queueId, id, function(story) {
+				response.send(story || 404);
+			});
+		},
+
 		create: function(request, response) {
 			
 			var queueId = request.params.queueId;

@@ -7,6 +7,15 @@ define(["mongodb"], function(mongodb) {
 	var url = "mongodb://localhost:27017/penguin";
 	var queuesName = "queues";
 
+	var getStoryById = function(stories, id) {
+		for (var index in stories) {
+			if (stories[index]._id == id) {
+				return stories[index];
+			}
+		}
+		return null;
+	};
+	
 	return {
 		
 		findQueues: function(callback) {
@@ -57,6 +66,18 @@ define(["mongodb"], function(mongodb) {
 			});
 		},
 
+		findStory: function(queueId, id, callback) {
+			var queueOid = new mongodb.ObjectID(queueId);
+			var oid = new mongodb.ObjectID(id);
+			client.connect(url, function(error, db) {
+				// until SERVER-142 is fixed we have to filter out the story ourselves
+				db.collection(queuesName).findOne({_id: queueOid, "stories._id": oid}, function(error, queue) {
+					callback(getStoryById(queue.stories, id));
+					db.close();
+				});
+			});
+		},
+		
 		createStory: function(queueId, story, callback) {
 			story._id = new mongodb.ObjectID();
 			var queueOid = new mongodb.ObjectID(queueId);

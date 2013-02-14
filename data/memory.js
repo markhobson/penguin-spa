@@ -33,6 +33,11 @@ define(function() {
 			callback(true);
 		},
 
+		findStory: function(queueId, id, callback) {
+			// TODO: implement
+			callback(null);
+		},
+		
 		createStory: function(queueId, story, callback) {
 			// TODO: set story._id
 			this.findQueue(queueId, function(queue) {

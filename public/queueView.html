@@ -16,7 +16,9 @@
 			</thead>
 			<tbody data-bind="foreach: stories">
 				<tr>
-					<td data-bind="text: name"></td>
+					<td>
+						<a data-bind="attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/update'}, text: name"></a>
+					</td>
 					<td data-bind="text: description"></td>
 					<td data-bind="text: author"></td>
 				</tr>

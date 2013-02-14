@@ -1,0 +1,26 @@
+<!--
+	View for editing a story.
+-->
+<form data-bind="submit: update">
+
+	<fieldset data-bind="with: story">
+	
+		<legend>Edit Story</legend>
+		
+		<label for="name">Name</label>
+		<input id="name" type="text" required data-bind="value: name"/>
+		
+		<label for="description">Description</label>
+		<input id="description" type="text" class="input-xxlarge" required data-bind="value: description"/>
+		
+		<label for="author">Author</label>
+		<input id="author" type="text" required data-bind="value: author"/>
+		
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Update</button>
+			<a class="btn" data-bind="attr: {href: '#/queue/' + $parent.queueId()}">Cancel</a>
+		</div>
+		
+	</fieldset>
+	
+</form>

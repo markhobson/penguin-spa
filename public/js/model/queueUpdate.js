@@ -25,10 +25,10 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		
 		show: function(id) {
 			model.load(id, function() {
-				page.show("queueEdit");
+				page.show("queueUpdate");
 			});
 		}
 	};
 	
-	page.queueEdit = model;
+	page.queueUpdate = model;
 });

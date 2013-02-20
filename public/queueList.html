@@ -7,8 +7,13 @@
 	<table class="table table-striped">
 		<tbody data-bind="foreach: queues">
 			<tr>
-				<td>
+				<td style="width: 100%">
 					<a data-bind="attr: {href: '#/queue/' + _id()}, text: name"></a>
+				</td>
+				<td>
+					<a data-bind="attr: {href: '#/queue/' + _id() + '/delete'}">
+						<i class="icon-remove"></i>
+					</a>
 				</td>
 			</tr>
 		</tbody>

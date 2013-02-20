@@ -44,6 +44,16 @@ define(["data/index"], function(data) {
 			data.updateStory(queueId, story, function(success) {
 				response.send(success ? 204 : 404);
 			});
+		},
+		
+		del: function(request, response) {
+			
+			var queueId = request.params.queueId;
+			var id = request.params.id;
+			
+			data.deleteStory(queueId, id, function(success) {
+				response.send(success ? 204 : 404);
+			});
 		}
 	};
 });

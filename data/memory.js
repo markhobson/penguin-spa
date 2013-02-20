@@ -49,6 +49,11 @@ define(function() {
 		updateStory: function(queueId, story, callback) {
 			// TODO: implement
 			callback(false);
+		},
+		
+		deleteStory: function(queueId, id, callback) {
+			// TODO: implement
+			callback(false);
 		}
 	};
 });

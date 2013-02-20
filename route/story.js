@@ -8,4 +8,6 @@ define(["app", "resource/story"], function(app, story) {
 	app.get("/api/queue/:queueId/story/:id", story.get);
 	
 	app.put("/api/queue/:queueId/story/:id", story.update);
+	
+	app.del("/api/queue/:queueId/story/:id", story.del);
 });

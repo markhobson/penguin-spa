@@ -105,6 +105,17 @@ define(["mongodb"], function(mongodb) {
 					}
 				);
 			});
+		},
+		
+		deleteStory: function(queueId, id, callback) {
+			var queueOid = new mongodb.ObjectID(queueId);
+			var oid = new mongodb.ObjectID(id);
+			client.connect(url, function(error, db) {
+				db.collection(queuesName).update({_id: queueOid}, {$pull: {"stories": {_id: oid}}}, {w: 1}, function(error, count) {
+					callback(count == 1);
+					db.close();
+				});
+			});
 		}
 	};
 });

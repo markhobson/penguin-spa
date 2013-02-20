@@ -19,7 +19,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		
 		update: function() {
 			$.putJSON("/api/queue/" + model.queue._id(), ko.toJSON(model.queue), function(data) {
-				window.location.hash = "/queue/" + model.queue._id();
+				window.location.hash = "/queues";
 			});
 		},
 		

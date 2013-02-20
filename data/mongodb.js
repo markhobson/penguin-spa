@@ -4,7 +4,9 @@
 define(["mongodb"], function(mongodb) {
 	
 	var client = mongodb.MongoClient;
-	var url = "mongodb://localhost:27017/penguin";
+	var url = process.env.MONGOLAB_URI
+		|| process.env.MONGOHQ_URL
+		|| "mongodb://localhost:27017/penguin";
 	var queuesName = "queues";
 
 	var getStoryById = function(queue, id) {

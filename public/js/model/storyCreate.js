@@ -5,7 +5,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 	
 	var newStory = {
 		name: null,
-		description: null,
+		title: null,
 		author: null
 	};
 	

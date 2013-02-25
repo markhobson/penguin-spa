@@ -21,7 +21,7 @@ define(["data/index"], function(data) {
 
 			var story = {
 				name: request.body.name,
-				description: request.body.description,
+				title: request.body.title,
 				author: request.body.author,
 				merged: false
 			};
@@ -38,7 +38,7 @@ define(["data/index"], function(data) {
 			var story = {
 				_id: request.params.id,
 				name: request.body.name,
-				description: request.body.description,
+				title: request.body.title,
 				author: request.body.author
 			};
 			

@@ -10,7 +10,7 @@
 			<thead>
 				<tr>
 					<th style="width: 20%">Name</th>
-					<th style="width: 60%">Description</th>
+					<th style="width: 60%">Title</th>
 					<th style="width: 20%">Author</th>
 					<th></th>
 					<th></th>
@@ -20,7 +20,7 @@
 			<tbody data-bind="foreach: stories">
 				<tr data-bind="css: {merged: merged}">
 					<td data-bind="text: name"></td>
-					<td data-bind="text: description"></td>
+					<td data-bind="text: title"></td>
 					<td data-bind="text: author"></td>
 					<td>
 						<a data-bind="ifnot: merged(), attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/merge'}, click: $parents[1].merge">

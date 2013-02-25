@@ -10,7 +10,7 @@ define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(k
 		story: mapping.fromJS({
 			_id: null,
 			name: null,
-			description: null,
+			title: null,
 			author: null
 		}),
 		

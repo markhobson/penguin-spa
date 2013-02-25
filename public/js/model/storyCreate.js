@@ -4,7 +4,7 @@
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
 	var newStory = {
-		name: null,
+		reference: null,
 		title: null,
 		author: null
 	};

@@ -20,7 +20,7 @@ define(["data/index"], function(data) {
 			var queueId = request.params.queueId;
 
 			var story = {
-				name: request.body.name,
+				reference: request.body.reference,
 				title: request.body.title,
 				author: request.body.author,
 				merged: false
@@ -37,7 +37,7 @@ define(["data/index"], function(data) {
 			
 			var story = {
 				_id: request.params.id,
-				name: request.body.name,
+				reference: request.body.reference,
 				title: request.body.title,
 				author: request.body.author
 			};

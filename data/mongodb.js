@@ -115,7 +115,7 @@ define(["mongodb"], function(mongodb) {
 			client.connect(url, function(error, db) {
 				db.collection(queuesName).update(
 					{_id: queueOid, "stories._id": oid},
-					{$set: {"stories.$.name": story.name, "stories.$.title": story.title, "stories.$.author": story.author}},
+					{$set: {"stories.$.reference": story.reference, "stories.$.title": story.title, "stories.$.author": story.author}},
 					{w: 1},
 					function(error, count) {
 						callback(count == 1);

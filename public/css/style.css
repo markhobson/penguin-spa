@@ -1,0 +1,7 @@
+/*
+ * Penguin CSS styles.
+ */
+.merged {
+	color: gray;
+	text-decoration: line-through;
+}

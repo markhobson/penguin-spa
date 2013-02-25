@@ -22,6 +22,18 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 			model.load(id, function() {
 				page.show("queueView");
 			});
+		},
+		
+		merge: function(story) {
+			$.post("/api/queue/" + model.queue._id() + "/story/" + story._id() + "/merge", function(data) {
+				story.merged(true);
+			});
+		},
+		
+		unmerge: function(story) {
+			$.post("/api/queue/" + model.queue._id() + "/story/" + story._id() + "/unmerge", function(data) {
+				story.merged(false);
+			});
 		}
 	};
 	

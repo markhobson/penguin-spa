@@ -20,6 +20,22 @@ define(["mongodb"], function(mongodb) {
 		return null;
 	};
 	
+	var mergeStory = function(queueId, id, merged, callback) {
+		var queueOid = new mongodb.ObjectID(queueId);
+		var oid = new mongodb.ObjectID(id);
+		client.connect(url, function(error, db) {
+			db.collection(queuesName).update(
+				{_id: queueOid, "stories._id": oid},
+				{$set: {"stories.$.merged": merged}},
+				{w: 1},
+				function(error, count) {
+					callback(count == 1);
+					db.close();
+				}
+			);
+		});
+	};
+	
 	return {
 		
 		findQueues: function(callback) {
@@ -118,6 +134,14 @@ define(["mongodb"], function(mongodb) {
 					db.close();
 				});
 			});
+		},
+		
+		mergeStory: function(queueId, id, callback) {
+			mergeStory(queueId, id, true, callback);
+		},
+		
+		unmergeStory: function(queueId, id, callback) {
+			mergeStory(queueId, id, false, callback);
 		}
 	};
 });

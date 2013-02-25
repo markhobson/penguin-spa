@@ -54,6 +54,17 @@ define(function() {
 		deleteStory: function(queueId, id, callback) {
 			// TODO: implement
 			callback(false);
+		},
+		
+		mergeStory: function(queueId, id, callback) {
+			// TODO: implement
+			callback(false);
+		},
+		
+		unmergeStory: function(queueId, id, callback) {
+			// TODO: implement
+			callback(false);
 		}
+
 	};
 });

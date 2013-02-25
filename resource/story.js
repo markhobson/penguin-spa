@@ -22,7 +22,8 @@ define(["data/index"], function(data) {
 			var story = {
 				name: request.body.name,
 				description: request.body.description,
-				author: request.body.author
+				author: request.body.author,
+				merged: false
 			};
 			
 			data.createStory(queueId, story, function(story) {
@@ -52,6 +53,26 @@ define(["data/index"], function(data) {
 			var id = request.params.id;
 			
 			data.deleteStory(queueId, id, function(success) {
+				response.send(success ? 204 : 404);
+			});
+		},
+		
+		merge: function(request, response) {
+			
+			var queueId = request.params.queueId;
+			var id = request.params.id;
+			
+			data.mergeStory(queueId, id, function(success) {
+				response.send(success ? 204 : 404);
+			});
+		},
+		
+		unmerge: function(request, response) {
+			
+			var queueId = request.params.queueId;
+			var id = request.params.id;
+			
+			data.unmergeStory(queueId, id, function(success) {
 				response.send(success ? 204 : 404);
 			});
 		}

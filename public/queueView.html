@@ -23,20 +23,20 @@
 					<td data-bind="text: title"></td>
 					<td data-bind="text: author"></td>
 					<td>
-						<a data-bind="ifnot: merged(), attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/merge'}, click: $parents[1].merge">
+						<a data-bind="ifnot: merged(), attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/merge'}, click: $parents[1].merge" title="Merge Story">
 							<i class="icon-ok"></i>
 						</a>
-						<a data-bind="if: merged(), attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/unmerge'}, click: $parents[1].unmerge">
+						<a data-bind="if: merged(), attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/unmerge'}, click: $parents[1].unmerge" title="Unmerge Story">
 							<i class="icon-ok"></i>
 						</a>
 					</td>
 					<td>
-						<a data-bind="attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/update'}">
+						<a data-bind="attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/update'}" title="Edit Story">
 							<i class="icon-pencil"></i>
 						</a>
 					</td>
 					<td>
-						<a data-bind="attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/delete'}">
+						<a data-bind="attr: {href: '#/queue/' + $parent._id() + '/story/' + _id() + '/delete'}" title="Delete Story">
 							<i class="icon-remove"></i>
 						</a>
 					</td>

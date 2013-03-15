@@ -22,9 +22,9 @@ Command Line Options
 
 The following command line options are supported:
 
-	-h, --help    Shows this help
-	-p, --port    Sets the server port                 [default: 8080]
-	-s, --server  Sets the Penguin server (host:port)  [default: "localhost:8081"]
+	-h, --help     Shows this help
+	-p, --port     Sets the server port              [default: 8080]
+	-s, --service  Sets the web service (host:port)  [default: "localhost:8081"]
 
 Hosted Instance
 ---------------

@@ -21,9 +21,9 @@ define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
 		app.use(express.errorHandler());
 	});
 	
-	app.useServer = function(serverPort, serverHost) {
-		var server = httpProxy.createServer(serverPort, serverHost);
-		app.use("/api", server);
+	app.useService = function(servicePort, serviceHost) {
+		var service = httpProxy.createServer(servicePort, serviceHost);
+		app.use("/api", service);
 	};
 
 	return app;

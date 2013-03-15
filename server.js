@@ -7,7 +7,7 @@ requirejs.config({
 	nodeRequire: require
 });
 
-requirejs(["app", "cli", "route/index"], function(app) {
+requirejs(["app", "cli"], function(app) {
 	
 	// start server
 	

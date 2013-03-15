@@ -1,7 +1,7 @@
 {
-	"name": "penguin",
+	"name": "penguin-spa",
 	"version": "0.1.0",
-	"description": "A virtual penguin queue",
+	"description": "Single-Page Application (SPA) client for Penguin.",
 	"private": true,
 	"dependencies": {
 		"requirejs": "2.1.4",

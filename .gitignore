@@ -1,5 +1,4 @@
 .project
 .settings
 node_modules
-.saved-queues.json
 *~

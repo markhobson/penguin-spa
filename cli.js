@@ -4,7 +4,7 @@
 define(["optimist", "app"], function(optimist, app) {
 
 	var opts = optimist
-		.usage("Starts the Penguin server.")
+		.usage("Starts the Penguin SPA client.")
 		.options("h", {
 			alias: "help",
 			describe: "Shows this help"

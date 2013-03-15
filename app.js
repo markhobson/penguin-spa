@@ -1,7 +1,7 @@
 /*
  * Penguin application.
  */
-define(["express", "path"], function(express, path) {
+define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
 	
 	var app = express();
 
@@ -20,6 +20,11 @@ define(["express", "path"], function(express, path) {
 	app.configure("development", function() {
 		app.use(express.errorHandler());
 	});
+	
+	app.useServer = function(serverPort, serverHost) {
+		var server = httpProxy.createServer(serverPort, serverHost);
+		app.use("/api", server);
+	};
 
 	return app;
 });

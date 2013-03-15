@@ -17,6 +17,15 @@ To run the Penguin SPA client:
 6. `node server`
 7. Visit [http://localhost:8080/](http://localhost:8080/)
 
+Command Line Options
+--------------------
+
+The following command line options are supported:
+
+	-h, --help    Shows this help
+	-p, --port    Sets the server port                 [default: 8080]
+	-s, --server  Sets the Penguin server (host:port)  [default: "localhost:8081"]
+
 Hosted Instance
 ---------------
 

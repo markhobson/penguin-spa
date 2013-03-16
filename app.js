@@ -7,24 +7,19 @@ var path = require("path");
 
 exports.create = function(servicePort, serviceHost) {
 	
-	var app = express();
-
-	// configure application
-
-	app.configure(function() {
-		app.use(express.favicon());
-		app.use(express.logger("dev"));
-		app.use("/api", httpProxy.createServer(servicePort, serviceHost));
-		app.use(express.bodyParser());
-		app.use(express.methodOverride());
-		app.use(express.static(path.join(this.__dirname, "public")));
-	});
+	var app = express()
+		.use(express.favicon())
+		.use(express.logger("dev"))
+		.use("/api", httpProxy.createServer(servicePort, serviceHost))
+		.use(express.bodyParser())
+		.use(express.methodOverride())
+		.use(express.static(path.join(this.__dirname, "public")));
 
 	// configure development profile
 
-	app.configure("development", function() {
+	if (app.get("env") == "development") {
 		app.use(express.errorHandler());
-	});
+	}
 	
 	return app;
 };

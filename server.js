@@ -1,13 +1,13 @@
 /*
  * Penguin SPA server.
  */
-var Cli = require("./cli");
+var cli = require("./cli");
 var App = require("./app");
 
-var config = Cli.config();
+var config = cli.config();
 
 if (config == null) {
-	Cli.showHelp();
+	cli.showHelp();
 }
 else {
 	var app = App.create(config.service.port, config.service.host);

@@ -26,7 +26,7 @@ var opts = optimist
 exports.config = function() {
 
 	if (opts.argv.help) {
-		return null;
+		return;
 	}
 	
 	var serviceTokens = opts.argv.service.split(":");

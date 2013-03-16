@@ -1,5 +1,5 @@
 /*
- * Penguin application.
+ * Web server Express application.
  */
 var express = require("express");
 var httpProxy = require("http-proxy");

@@ -10,9 +10,6 @@ define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
 	app.configure(function() {
 		app.use(express.favicon());
 		app.use(express.logger("dev"));
-		app.use(express.bodyParser());
-		app.use(express.methodOverride());
-		app.use(express.static(path.join(this.__dirname, "public")));
 	});
 
 	// configure development profile
@@ -24,6 +21,11 @@ define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
 	app.useService = function(servicePort, serviceHost) {
 		var service = httpProxy.createServer(servicePort, serviceHost);
 		app.use("/api", service);
+		
+		// TODO: move back to configure()
+		app.use(express.bodyParser());
+		app.use(express.methodOverride());
+		app.use(express.static(path.join(this.__dirname, "public")));
 	};
 
 	return app;

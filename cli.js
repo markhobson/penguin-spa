@@ -3,28 +3,28 @@
  */
 var optimist = require("optimist");
 
+var defaultServiceHost = "localhost";
+var defaultServicePort = 8081;
+
+var opts = optimist
+	.usage("Starts the Penguin SPA client.")
+	.options("h", {
+		alias: "help",
+		describe: "Shows this help"
+	})
+	.options("p", {
+		alias: "port",
+		describe: "Sets the server port",
+		"default": process.env.PORT || 8080
+	})
+	.options("s", {
+		alias: "service",
+		describe: "Sets the web service (host:port)",
+		"default": defaultServiceHost + ":" + defaultServicePort
+	});
+
 exports.config = function() {
 
-	var defaultServiceHost = "localhost";
-	var defaultServicePort = 8081;
-	
-	var opts = optimist
-		.usage("Starts the Penguin SPA client.")
-		.options("h", {
-			alias: "help",
-			describe: "Shows this help"
-		})
-		.options("p", {
-			alias: "port",
-			describe: "Sets the server port",
-			"default": process.env.PORT || 8080
-		})
-		.options("s", {
-			alias: "service",
-			describe: "Sets the web service (host:port)",
-			"default": defaultServiceHost + ":" + defaultServicePort
-		});
-	
 	if (opts.argv.help) {
 		opts.showHelp();
 		return null;

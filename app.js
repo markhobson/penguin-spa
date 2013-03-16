@@ -1,7 +1,11 @@
 /*
  * Penguin application.
  */
-define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
+var express = require("express");
+var httpProxy = require("http-proxy");
+var path = require("path");
+
+exports.create = function(servicePort, serviceHost) {
 	
 	var app = express();
 
@@ -10,6 +14,10 @@ define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
 	app.configure(function() {
 		app.use(express.favicon());
 		app.use(express.logger("dev"));
+		app.use("/api", httpProxy.createServer(servicePort, serviceHost));
+		app.use(express.bodyParser());
+		app.use(express.methodOverride());
+		app.use(express.static(path.join(this.__dirname, "public")));
 	});
 
 	// configure development profile
@@ -18,15 +26,5 @@ define(["express", "http-proxy", "path"], function(express, httpProxy, path) {
 		app.use(express.errorHandler());
 	});
 	
-	app.useService = function(servicePort, serviceHost) {
-		var service = httpProxy.createServer(servicePort, serviceHost);
-		app.use("/api", service);
-		
-		// TODO: move back to configure()
-		app.use(express.bodyParser());
-		app.use(express.methodOverride());
-		app.use(express.static(path.join(this.__dirname, "public")));
-	};
-
 	return app;
-});
+};

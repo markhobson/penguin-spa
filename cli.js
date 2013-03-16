@@ -1,7 +1,9 @@
 /*
  * Processes command-line arguments.
  */
-define(["optimist", "app"], function(optimist, app) {
+var optimist = require("optimist");
+
+exports.config = function() {
 
 	var defaultServiceHost = "localhost";
 	var defaultServicePort = 8081;
@@ -25,13 +27,18 @@ define(["optimist", "app"], function(optimist, app) {
 	
 	if (opts.argv.help) {
 		opts.showHelp();
-		return;
+		return null;
 	}
 	
-	app.set("port", opts.argv.port);
-	
 	var serviceTokens = opts.argv.service.split(":");
-	app.set("service.host", serviceTokens[0] || defaultServiceHost);
-	app.set("service.port", serviceTokens[1] || defaultServicePort);
+	var serviceHost = serviceTokens[0] || defaultServiceHost;
+	var servicePort = serviceTokens[1] || defaultServicePort;
 	
-});
+	return {
+		port: opts.argv.port,
+		service: {
+			host: serviceHost,
+			port: servicePort
+		}
+	};
+};

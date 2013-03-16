@@ -1,27 +1,19 @@
 /*
  * Penguin server.
  */
-var requirejs = require("requirejs");
+var Cli = require("./cli");
+var App = require("./app");
 
-requirejs.config({
-	nodeRequire: require
-});
+var config = Cli.config();
 
-requirejs(["app", "cli"], function(app) {
+// start server
+
+if (config != null) {
 	
-	// start server
+	var app = App.create(config.service.port, config.service.host);
+	console.log("Using web service " + config.service.host + ":" + config.service.port);
 	
-	var port = app.get("port");
-
-	if (port) {
-		
-		var serviceHost = app.get("service.host");
-		var servicePort = app.get("service.port");
-		app.useService(serviceHost, servicePort);
-		console.log("Using web service " + serviceHost + ":" + servicePort);
-		
-		app.listen(port, function() {
-			console.log("Server listening on port " + port);
-		});
-	}
-});
+	app.listen(config.port, function() {
+		console.log("Server listening on port " + config.port);
+	});
+}

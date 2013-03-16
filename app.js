@@ -8,7 +8,7 @@ var path = require("path");
 exports.create = function(servicePort, serviceHost) {
 	
 	var app = express()
-		.use(express.favicon())
+		.use(express.favicon(path.join(this.__dirname, "public/img/penguin16.png")))
 		.use(express.logger("dev"))
 		.use("/api", httpProxy.createServer(servicePort, serviceHost))
 		.use(express.bodyParser())

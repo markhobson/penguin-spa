@@ -1,5 +1,5 @@
 /*
- * Penguin server.
+ * Penguin SPA server.
  */
 var Cli = require("./cli");
 var App = require("./app");

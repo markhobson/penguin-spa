@@ -1,5 +1,5 @@
 /*
- * Penguin client.
+ * Penguin SPA client.
  */
 require.config({
 	

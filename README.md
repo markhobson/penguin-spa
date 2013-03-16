@@ -39,6 +39,7 @@ The client is a single-page application that uses [Director](https://github.com/
 use [Knockout.js](http://knockoutjs.com/) for UI bindings and are externalised using the
 [Knockout.js External Template Engine](https://github.com/ifandelse/Knockout.js-External-Template-Engine).  AJAX REST
 requests are performed by [jQuery](http://jquery.com/) and CSS is provided by
-[Bootstrap](http://twitter.github.com/bootstrap/).
+[Bootstrap](http://twitter.github.com/bootstrap/).  [RequireJS](http://requirejs.org/) is used as the JavaScript module
+loader.
 
-[RequireJS](http://requirejs.org/) is used as the JavaScript module loader.
+It is served by a [Express](http://expressjs.com/) web application running on [Node.js](http://nodejs.org/).

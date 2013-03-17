@@ -11,19 +11,17 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 		stories: []
 	});
 		
-	// TODO: centralise filtering
+	var storyFilter = function(merged) {
+		return function() {
+			return ko.utils.arrayFilter(this.stories(), function(story) {
+				return story.merged() == merged;
+			});
+		};
+	};
 	
-	model.queue.unmergedStories = ko.computed(function() {
-		return ko.utils.arrayFilter(this.stories(), function(story) {
-			return !story.merged();
-		});
-	}, model.queue);
-
-	model.queue.mergedStories = ko.computed(function() {
-		return ko.utils.arrayFilter(this.stories(), function(story) {
-			return story.merged();
-		});
-	}, model.queue);
+	model.queue.unmergedStories = ko.computed(storyFilter(false), model.queue);
+	
+	model.queue.mergedStories = ko.computed(storyFilter(true), model.queue);
 	
 	model.merged = ko.observable();
 		

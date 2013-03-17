@@ -3,16 +3,14 @@
  */
 define(["knockout"], function(ko) {
 	
-	var model = {
-		/*
-		 * The template name of the currently visible page.
-		 */
-		show: ko.observable(),
+	var model = {};
+	
+	// the template name of the currently visible page
+	model.show = ko.observable();
 		
-		// TODO: remove when Knockout can bind template name to observable
-		showValue: function() {
-			return model.show();
-		}
+	// TODO: remove when Knockout can bind template name to observable
+	model.showValue = function() {
+		return model.show();
 	};
 	
 	ko.applyBindings(model);

@@ -11,9 +11,27 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 			stories: []
 		}),
 		
+		merged: ko.observable(),
+		
 		load: function(id, done) {
 			$.getJSON("/api/queue/" + id, function(data) {
 				mapping.fromJS(data, {}, model.queue);
+				
+				// TODO: move into model.queue when circular dependency resolved
+				// TODO: centralise filtering
+				
+				model.queue.unmergedStories = ko.computed(function() {
+					return ko.utils.arrayFilter(this.stories(), function(story) {
+						return !story.merged();
+					});
+				}, model.queue);
+
+				model.queue.mergedStories = ko.computed(function() {
+					return ko.utils.arrayFilter(this.stories(), function(story) {
+						return story.merged();
+					});
+				}, model.queue);
+				
 				done();
 			});
 		},
@@ -22,6 +40,16 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 			model.load(id, function() {
 				page.show("queueView");
 			});
+		},
+		
+		showUnmerged: function(id) {
+			model.merged(false);
+			model.show(id);
+		},
+		
+		showMerged: function(id) {
+			model.merged(true);
+			model.show(id);
 		},
 		
 		merge: function(story) {

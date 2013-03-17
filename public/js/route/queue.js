@@ -9,6 +9,10 @@ define(["router", "model/page", "model/queueCreate", "model/queueUpdate", "model
 	
 	router.on("/queue/:id", page.queueView.show);
 	
+	router.on("/queue/:id/unmerged", page.queueView.showUnmerged);
+	
+	router.on("/queue/:id/merged", page.queueView.showMerged);
+	
 	router.on("/queue/:id/update", page.queueUpdate.show);
 	
 	router.on("/queue/:id/delete", page.queueDelete.show);

@@ -11,27 +11,25 @@ define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, pag
 		stories: []
 	});
 		
+	// TODO: centralise filtering
+	
+	model.queue.unmergedStories = ko.computed(function() {
+		return ko.utils.arrayFilter(this.stories(), function(story) {
+			return !story.merged();
+		});
+	}, model.queue);
+
+	model.queue.mergedStories = ko.computed(function() {
+		return ko.utils.arrayFilter(this.stories(), function(story) {
+			return story.merged();
+		});
+	}, model.queue);
+	
 	model.merged = ko.observable();
 		
 	model.load = function(id, done) {
 		$.getJSON("/api/queue/" + id, function(data) {
 			mapping.fromJS(data, {}, model.queue);
-			
-			// TODO: move into model.queue when circular dependency resolved
-			// TODO: centralise filtering
-			
-			model.queue.unmergedStories = ko.computed(function() {
-				return ko.utils.arrayFilter(this.stories(), function(story) {
-					return !story.merged();
-				});
-			}, model.queue);
-
-			model.queue.mergedStories = ko.computed(function() {
-				return ko.utils.arrayFilter(this.stories(), function(story) {
-					return story.merged();
-				});
-			}, model.queue);
-			
 			done();
 		});
 	};

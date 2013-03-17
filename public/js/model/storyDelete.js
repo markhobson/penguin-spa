@@ -3,41 +3,38 @@
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
-	var model = {
+	var model = page.storyDelete = {};
 		
-		queueId: ko.observable(),
+	model.queueId = ko.observable();
 		
-		story: mapping.fromJS({
-			_id: null,
-			reference: null,
-			title: null,
-			author: null
-		}),
+	model.story = mapping.fromJS({
+		_id: null,
+		reference: null,
+		title: null,
+		author: null
+	});
 		
-		load: function(queueId, id, done) {
-			model.queueId(queueId);
-			$.getJSON("/api/queue/" + queueId + "/story/" + id, function(data) {
-				mapping.fromJS(data, {}, model.story);
-				done();
-			});
-		},
-		
-		del: function() {
-			$.ajax({
-				type: "DELETE",
-				url: "/api/queue/" + model.queueId() + "/story/" + model.story._id(),
-				success: function(data) {
-					window.location.hash = "/queue/" + model.queueId();
-				}
-			});
-		},
-		
-		show: function(queueId, id) {
-			model.load(queueId, id, function() {
-				page.show("storyDelete");
-			});
-		}
+	model.load = function(queueId, id, done) {
+		model.queueId(queueId);
+		$.getJSON("/api/queue/" + queueId + "/story/" + id, function(data) {
+			mapping.fromJS(data, {}, model.story);
+			done();
+		});
 	};
-	
-	page.storyDelete = model;
+		
+	model.del = function() {
+		$.ajax({
+			type: "DELETE",
+			url: "/api/queue/" + model.queueId() + "/story/" + model.story._id(),
+			success: function(data) {
+				window.location.hash = "/queue/" + model.queueId();
+			}
+		});
+	};
+		
+	model.show = function(queueId, id) {
+		model.load(queueId, id, function() {
+			page.show("storyDelete");
+		});
+	};
 });

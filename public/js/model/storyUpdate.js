@@ -3,37 +3,34 @@
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
-	var model = {
+	var model = page.storyUpdate = {};
 		
-		queueId: ko.observable(),
+	model.queueId = ko.observable();
 		
-		story: mapping.fromJS({
-			_id: null,
-			reference: null,
-			title: null,
-			author: null
-		}),
+	model.story = mapping.fromJS({
+		_id: null,
+		reference: null,
+		title: null,
+		author: null
+	});
 		
-		load: function(queueId, id, done) {
-			model.queueId(queueId);
-			$.getJSON("/api/queue/" + queueId + "/story/" + id, function(data) {
-				mapping.fromJS(data, {}, model.story);
-				done();
-			});
-		},
-		
-		update: function() {
-			$.putJSON("/api/queue/" + model.queueId() + "/story/" + model.story._id(), ko.toJSON(model.story), function(data) {
-				window.location.hash = "/queue/" + model.queueId();
-			});
-		},
-		
-		show: function(queueId, id) {
-			model.load(queueId, id, function() {
-				page.show("storyUpdate");
-			});
-		}
+	model.load = function(queueId, id, done) {
+		model.queueId(queueId);
+		$.getJSON("/api/queue/" + queueId + "/story/" + id, function(data) {
+			mapping.fromJS(data, {}, model.story);
+			done();
+		});
 	};
-	
-	page.storyUpdate = model;
+		
+	model.update = function() {
+		$.putJSON("/api/queue/" + model.queueId() + "/story/" + model.story._id(), ko.toJSON(model.story), function(data) {
+			window.location.hash = "/queue/" + model.queueId();
+		});
+	};
+		
+	model.show = function(queueId, id) {
+		model.load(queueId, id, function() {
+			page.show("storyUpdate");
+		});
+	};
 });

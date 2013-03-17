@@ -3,23 +3,20 @@
  */
 define(["knockout", "knockout-mapping", "model/page"], function(ko, mapping, page) {
 	
-	var model = {
-		
-		queues: ko.observableArray(),
-		
-		load: function(done) {
-			$.getJSON("/api/queues", function(data) {
-				mapping.fromJS(data, {}, model.queues);
-				done();
-			});
-		},
-		
-		show: function() {
-			model.load(function() {
-				page.show("queueList");
-			});
-		}
-	};
+	var model = page.queueList = {};
 	
-	page.queueList = model;
+	model.queues = ko.observableArray();
+	
+	model.load = function(done) {
+		$.getJSON("/api/queues", function(data) {
+			mapping.fromJS(data, {}, model.queues);
+			done();
+		});
+	};
+		
+	model.show = function() {
+		model.load(function() {
+			page.show("queueList");
+		});
+	};
 });

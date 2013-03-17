@@ -3,29 +3,26 @@
  */
 define(["knockout", "knockout-mapping", "model/page", "jquery-json"], function(ko, mapping, page) {
 	
+	var model = page.queueCreate = {};
+
 	var newQueue = {
 		name: null
 	};
 	
-	var model = {
+	model.queue = mapping.fromJS(newQueue);
 		
-		queue: mapping.fromJS(newQueue),
-		
-		create: function() {
-			$.postJSON("/api/queues", ko.toJSON(model.queue), function(data) {
-				window.location.hash = "/queues";
-			});
-		},
-		
-		reset: function() {
-			mapping.fromJS(newQueue, model.queue);
-		},
-		
-		show: function() {
-			model.reset();
-			page.show("queueCreate");
-		}
+	model.create = function() {
+		$.postJSON("/api/queues", ko.toJSON(model.queue), function(data) {
+			window.location.hash = "/queues";
+		});
 	};
-	
-	page.queueCreate = model;
+		
+	model.reset = function() {
+		mapping.fromJS(newQueue, model.queue);
+	};
+		
+	model.show = function() {
+		model.reset();
+		page.show("queueCreate");
+	};
 });
